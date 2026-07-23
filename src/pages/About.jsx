@@ -7,7 +7,7 @@ import neboshBadge from '../assets/brand/nebosh-silver-partner.png';
 import ioshBadge from '../assets/brand/iosh-logo.png';
 import cqiBadge from '../assets/brand/cqi-irca-logo.png';
 
-// Import client logos for the automated looping carousel
+// Import primary partner badges for bottom marquee
 import nuprcLogo from '../assets/clients/nuprc-logo.png';
 import ncdmbLogo from '../assets/clients/ncdmb-logo.png';
 import nipexLogo from '../assets/clients/nipex-logo.png';
@@ -15,15 +15,32 @@ import itfLogo from '../assets/clients/itf-logo.png';
 import nesLogo from '../assets/clients/nes-logo.png';
 import fpanLogo from '../assets/clients/fpan-logo.png';
 
+// =========================================================================
+// 🚀 BULLETPROOF ASSET AUTO-LOADER (Vite Glob)
+// Automatically loads all PNG, SVG, JPG, WEBP files in src/assets/clients/
+// =========================================================================
+const logoModules = import.meta.glob('../assets/clients/*.{png,svg,jpg,jpeg,webp}', { eager: true, import: 'default' });
+
+// Helper function: Finds an imported image matching any of the search keys
+const getLogo = (...searchKeys) => {
+  for (const path in logoModules) {
+    const filename = path.split('/').pop().toLowerCase();
+    for (const key of searchKeys) {
+      if (filename.includes(key.toLowerCase())) {
+        return logoModules[path];
+      }
+    }
+  }
+  return null; // Safe fallback if file isn't found
+};
+
 const About = () => {
-  // Read More / Read Less Toggle State for Background Info
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // High-quality photos for Vision & Mission cards
   const visionBuildingImg = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80";
   const missionGlobeImg = "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1000&q=80";
 
-  // Client & Partner Logo collection (BIGGER & BOOSTED SCALES)
+  // Partner Logo collection for bottom carousel
   const clientLogos = [
     { logo: nuprcLogo, name: "NUPRC", scale: 'scale(1.15)' },
     { logo: ncdmbLogo, name: "NCDMB", scale: 'scale(1.15)' },
@@ -36,6 +53,66 @@ const About = () => {
     { logo: cqiBadge, name: "CQI-IRCA", scale: 'scale(1.85)' }
   ];
 
+// 🏢 Verified Working Logo Grid Clients (Mantrac and MTN removed)
+  const corporateClients = [
+    { name: "AIICO Insurance", logo: getLogo("aiico-insurance") },
+    { name: "Air France", logo: getLogo("air-france", "air--france"), scale: "scale(1.45)" }, // 🔍 Scaled up
+    { name: "Alcon", logo: getLogo("alcon") },
+    { name: "APM Terminals", logo: getLogo("apm-terminals"), scale: "scale(1.45)" }, // 🔍 Scaled up
+    { name: "Arkleen Oil", logo: getLogo("arkleen-oil"), scale: "scale(1.35)" }, // 🔍 Scaled up
+    { name: "Aveon Offshore", logo: getLogo("aveon-offshore") },
+    { name: "Axxela", logo: getLogo("axxela") },
+    { name: "BOC Gases", logo: getLogo("boc-gases") },
+    { name: "Ciscon", logo: getLogo("ciscon") },
+    { name: "Conoil", logo: getLogo("conoil") },
+    { name: "Dangote Group", logo: getLogo("dangote"), scale: "scale(1.35)" }, // 🔍 Scaled up
+    { name: "Delta Environmental", logo: getLogo("delta-environmental") },
+    { name: "DHL", logo: getLogo("dhl") },
+    { name: "Drillog", logo: getLogo("drillog") },
+    { name: "Drillpet", logo: getLogo("drillpet") },
+    { name: "Dufil Prima Foods", logo: getLogo("dufil") },
+    { name: "FIPL", logo: getLogo("fipl") },
+    { name: "Halliburton", logo: getLogo("halliburton") },
+    { name: "Intels", logo: getLogo("intels") },
+    { name: "International Breweries", logo: getLogo("international-breweries", "international breweries") },
+    { name: "Mainstream Energy", logo: getLogo("mainstream-energy") },
+    { name: "NASCON", logo: getLogo("nascon") },
+    { name: "Oando Energy", logo: getLogo("oando-energy") },
+    { name: "Okmas", logo: getLogo("okmas") },
+    { name: "Philips Project Centre (PPC)", logo: getLogo("philips-project") },
+    { name: "Prodeco", logo: getLogo("prodeco") },
+    { name: "UPS", logo: getLogo("ups") },
+    { name: "Weafri", logo: getLogo("weafri") },
+    { name: "Weltec", logo: getLogo("weltek") }
+  ];
+
+  // 📝 17 Additional Companies (Mantrac & MTN included)
+  const additionalCol1 = [
+    "Ace Footwear Industries",
+    "Centre for Advanced Social Science",
+    "Central Horizon Gas Company",
+    "Elektrint",
+    "Exterran Corporation",
+    "Global Energy Group"
+  ];
+
+  const additionalCol2 = [
+    "Hanover",
+    "Jubaili Bros Engineering Limited",
+    "Lafarge Holcim Group",
+    "Mantrac Group",
+    "MTN",
+    "Royal Salt"
+  ];
+
+  const additionalCol3 = [
+    "Saipem",
+    "SAP Drilling Oil and Gas Limited",
+    "Seric Impianti International Limited",
+    "Tenaris Group",
+    "Titan Tubulars"
+  ];
+
   const coreValues = [
     { title: "Integrity", desc: "We conduct our business with honesty, transparency, accountability, and the highest ethical standards." },
     { title: "Positive Attitude", desc: "We cultivate a culture of teamwork, respect, innovation, and a solution-oriented mindset." },
@@ -43,7 +120,6 @@ const About = () => {
     { title: "Hard Work", desc: "We are dedicated, disciplined, and committed to excellence in every assignment, consistently exceeding expectations." }
   ];
 
-  // International Courses Data
   const neboshAwards = [
     "NEBOSH Environmental Awareness at Work (EAW)",
     "NEBOSH HSE Managing Risks & Risk Assessment at Work (RAW)",
@@ -73,10 +149,7 @@ const About = () => {
     "National Diploma in Environmental Mgt. (NDE)"
   ];
 
-  const ioshCourses = [
-    "IOSH Working Safely",
-    "IOSH Managing Safely"
-  ];
+  const ioshCourses = ["IOSH Working Safely", "IOSH Managing Safely"];
 
   const isoCourses = [
     "ISO 14001:2015 EMS Lead Auditor",
@@ -87,7 +160,6 @@ const About = () => {
     "ISO 50001:2018 EnMS Lead Auditor"
   ];
 
-  // QHSE Courses Data
   const fireCourses = [
     "Basic Fire Fighting",
     "Practical Fire Fighting",
@@ -150,7 +222,6 @@ const About = () => {
     "Working at Height"
   ];
 
-  // QHSE Support Services Data
   const isoAuditCertifications = [
     "ISO 9001: Audit & Certification",
     "ISO 14001: Audit & Certification",
@@ -186,77 +257,11 @@ const About = () => {
     "Security Equipment Supply & Services"
   ];
 
-  // Organizations Data
-  const orgsCol1 = [
-    "Ace Footwear Industries",
-    "Aiico Insurance Plc",
-    "Air France",
-    "Alcon",
-    "APM Terminals",
-    "Arkleen Oil",
-    "Aveon Offshore Limited",
-    "Axxela Limited",
-    "BOC Gases",
-    "Centre for Advanced Social Science",
-    "Central Horizon Gas Company",
-    "Ciscon",
-    "Conoil Plc"
-  ];
-
-  const orgsCol2 = [
-    "Dangote Group",
-    "Delta Environmental Logistic",
-    "DHL",
-    "Drillog Petro-dynamics",
-    "Drillpet International",
-    "Dufil Prima Food Industry",
-    "Elektrint",
-    "Exterran Corporation",
-    "First Independent Power Limited",
-    "Gaslink",
-    "Global Energy Group",
-    "Halliburton Energy Services",
-    "Hanover"
-  ];
-
-  const orgsCol3 = [
-    "Intels",
-    "International Breweries",
-    "Jubaili Bros Engineering Limited",
-    "Lafarge Holcim Group",
-    "Mainstream Energy Solutions Limited",
-    "Mantrac",
-    "MTN",
-    "Nascon Allied Industries",
-    "Niger Insurance Plc",
-    "NLSS",
-    "Novotel Hotel",
-    "Oando Energy Resources",
-    "Okmas Engineering"
-  ];
-
-  const orgsCol4 = [
-    "Philips Project Center",
-    "Prodeco",
-    "Royal Salt",
-    "Saipem",
-    "SAP Drilling Oil and Gas Limited",
-    "Seric Impianti",
-    "Sowsco Well Services",
-    "Starzs Marine",
-    "Tenaris Group",
-    "Titan Tubulars",
-    "United Parcel Services",
-    "Westfri Well Services",
-    "Weltec"
-  ];
-
-  // Registration Documents
   const registrationDocs = [
     { label: "Download Training Calendar", file: "/docs/training-calendar.pdf" },
-    { label: "Download Registration Form", file: "/docs/registration-form.pdf" },
+    { label: "Download Registration Form", file: "/docs/registration-form.docx" },
     { label: "Download Course Selection Guide", file: "/docs/course-selection-guide.pdf" },
-    { label: "Download Terms and Conditions", file: "/docs/terms-and-conditions.pdf" }
+    { label: "Download Terms and Conditions", file: "/docs/terms-and-conditions.docx" }
   ];
 
   const submissionDocs = [
@@ -266,7 +271,6 @@ const About = () => {
     "Scanned Copy of Valid Photo ID"
   ];
 
-  // Reasons to Enrol Data
   const enrolmentReasons = [
     { title: "Improve Safety Culture", desc: "Build a proactive, risk-aware culture across teams and operational sites." },
     { title: "Enhance Career Prospects", desc: "Unlock rapid professional advancement with internationally recognized certifications." },
@@ -276,23 +280,35 @@ const About = () => {
     { title: "Increase Employability", desc: "Stand out in high-demand global job markets within energy, construction, and oil & gas." }
   ];
 
-  // Form State Handlers
-  const [courseForm, setCourseForm] = useState({ name: '', email: '', phone: '', choice: '', country: '' });
-  const [quoteForm, setQuoteForm] = useState({ name: '', email: '', phone: '', service: '', country: '' });
+  const [courseForm, setCourseForm] = useState({ name: '', email: '', phone: '', organisation: '', choice: '', country: '' });
+  const [quoteForm, setQuoteForm] = useState({ name: '', email: '', phone: '', organisation: '', service: '', country: '' });
 
   const handleCourseSubmit = (e) => {
     e.preventDefault();
-    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=Request for Course Details&body=Name: ${encodeURIComponent(courseForm.name)}%0AEmail: ${encodeURIComponent(courseForm.email)}%0AMobile/WhatsApp: ${encodeURIComponent(courseForm.phone)}%0ACourse/Service: ${encodeURIComponent(courseForm.choice)}%0ACountry: ${encodeURIComponent(courseForm.country)}`;
+    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=${encodeURIComponent('Individual or Personal Request')}&body=${encodeURIComponent(
+      `Name of Contact Person: ${courseForm.name}\n` +
+      `Official email: ${courseForm.email}\n` +
+      `Mobile/WhatsApp: ${courseForm.phone}\n` +
+      `Name of Organisation: ${courseForm.organisation}\n` +
+      `Course or Service of Choice: ${courseForm.choice}\n` +
+      `Country of location: ${courseForm.country}`
+    )}`;
     window.location.href = mailtoUrl;
   };
 
   const handleQuoteSubmit = (e) => {
     e.preventDefault();
-    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=Request for Proposal or Quote&body=Name: ${encodeURIComponent(quoteForm.name)}%0AEmail: ${encodeURIComponent(quoteForm.email)}%0AMobile/WhatsApp: ${encodeURIComponent(quoteForm.phone)}%0AService of Choice: ${encodeURIComponent(quoteForm.service)}%0ACountry: ${encodeURIComponent(quoteForm.country)}`;
+    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=${encodeURIComponent('Company or Corporate Request')}&body=${encodeURIComponent(
+      `Name of Contact Person: ${quoteForm.name}\n` +
+      `Official email: ${quoteForm.email}\n` +
+      `Mobile/WhatsApp: ${quoteForm.phone}\n` +
+      `Name of Organisation: ${quoteForm.organisation}\n` +
+      `Course or Service of Choice: ${quoteForm.service}\n` +
+      `Country of location: ${quoteForm.country}`
+    )}`;
     window.location.href = mailtoUrl;
   };
 
-  // Hover helper handlers for general cards
   const cardHoverStyle = {
     transition: 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease'
   };
@@ -338,45 +354,66 @@ const About = () => {
     </ul>
   );
 
-  // Updated renderDownloadItems without the arrow icon ⬇
   const renderDownloadItems = (items) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', margin: '0 0 1.5rem 0' }}>
-      {items.map((item, idx) => (
-        <a
-          key={idx}
-          href={item.file}
-          download
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            padding: '0.75rem 1rem',
-            backgroundColor: '#f4f9f6',
-            border: '1.5px solid #2b704a',
-            borderRadius: '6px',
-            color: '#2b704a',
-            fontWeight: '700',
-            fontSize: '0.88rem',
-            textDecoration: 'none',
-            transition: 'all 0.25s ease',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#2b704a';
-            e.currentTarget.style.color = '#ffffff';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 6px 12px rgba(43, 112, 74, 0.2)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#f4f9f6';
-            e.currentTarget.style.color = '#2b704a';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.02)';
-          }}
-        >
-          <span>{item.label}</span>
-        </a>
-      ))}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', margin: '0 0 1.5rem 0' }}>
+      {items.map((item, idx) => {
+        const isDocx = item.file.endsWith('.docx');
+        return (
+          <a
+            key={idx}
+            href={item.file}
+            download
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justify: 'space-between',
+              padding: '0.85rem 1.1rem',
+              backgroundColor: '#ffffff',
+              border: '1.5px solid #eaecf0',
+              borderLeft: '5px solid #2b704a',
+              borderRadius: '8px',
+              color: '#101828',
+              fontWeight: '800',
+              fontSize: '0.88rem',
+              textDecoration: 'none',
+              boxShadow: '0 3px 8px rgba(0,0,0,0.04)',
+              transition: 'all 0.25s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#2b704a';
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.borderColor = '#2b704a';
+              e.currentTarget.style.transform = 'translateX(5px)';
+              e.currentTarget.style.boxShadow = '0 8px 18px rgba(43, 112, 74, 0.25)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.color = '#101828';
+              e.currentTarget.style.borderColor = '#eaecf0';
+              e.currentTarget.style.transform = 'translateX(0)';
+              e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.04)';
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+              <span style={{ fontSize: '1.1rem' }}>📥</span>
+              <span style={{ letterSpacing: '0.2px' }}>{item.label}</span>
+            </div>
+
+            <span style={{
+              fontSize: '0.7rem',
+              fontWeight: '900',
+              padding: '0.2rem 0.55rem',
+              borderRadius: '4px',
+              backgroundColor: isDocx ? '#0078d4' : '#d92d20',
+              color: '#ffffff',
+              letterSpacing: '0.5px'
+            }}>
+              {isDocx ? 'DOCX' : 'PDF'}
+            </span>
+          </a>
+        );
+      })}
     </div>
   );
 
@@ -404,7 +441,7 @@ const About = () => {
       {/* 🏢 1. BACKGROUND INFORMATION */}
       <section style={{ maxWidth: '1200px', margin: '3rem auto 0 auto', padding: '0 2rem' }}>
         <h2 style={{ fontSize: '1.8rem', color: '#2b704a', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-          About Safeguard Safety and Management Center Limited
+          BACKGROUND INFORMATION
         </h2>
         <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', marginBottom: '2rem' }}></div>
 
@@ -414,7 +451,6 @@ const About = () => {
           gap: '3.5rem',
           alignItems: 'start'
         }}>
-          {/* Text Div */}
           <div style={{ flex: '1 1 520px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', color: '#344054', lineHeight: '1.8', fontSize: '1.02rem', textAlign: 'justify' }}>
               <p style={{ margin: 0 }}>
@@ -481,7 +517,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Photo Div */}
           <div style={{ flex: '1 1 400px', width: '100%' }}>
             <div style={{ width: '100%', height: '420px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 8px 16px rgba(0,0,0,0.06)', border: '1px solid #eaecf0' }}>
               <img 
@@ -503,7 +538,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* 🤝 2. ACCREDITATION PARTNER BADGES ROW (RESIZED & VISUALLY BALANCED) */}
+      {/* 🤝 2. ACCREDITATION PARTNER BADGES ROW */}
       <section style={{
         backgroundColor: 'var(--color-white)',
         padding: '4.5rem 2rem',
@@ -537,7 +572,7 @@ const About = () => {
             <div style={{ height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <img src={cqiBadge} alt="CQI-IRCA Logo" loading="lazy" style={{ maxHeight: '160px', maxWidth: '320px', width: 'auto', objectFit: 'contain', transform: 'scale(1.35)', transformOrigin: 'center' }} />
             </div>
-            <span style={{ fontWeight: '800', fontSize: '1rem', color: 'var(--color-dark)', letterSpacing: '0.5px' }}>CQI-IRCA TRAINING CENTER</span>
+            <span style={{ fontWeight: '800', fontSize: '1rem', color: 'var(--color-dark)', letterSpacing: '0.5px' }}>CQI-IRCA ISO TRAINING CENTER</span>
           </div>
         </div>
       </section>
@@ -1004,33 +1039,118 @@ const About = () => {
         </div>
       </section>
 
-      {/* 🏢 11. SOME ORGANIZATIONS THAT HAVE USED OUR SERVICES */}
-      <section style={{ maxWidth: '1200px', margin: '5rem auto 0 auto', padding: '0 2rem' }}>
-        <h2 style={{ fontSize: '1.8rem', color: '#2b704a', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px', textAlign: 'center' }}>
-          SOME ORGANIZATIONS THAT HAVE USED OUR SERVICES
-        </h2>
-        <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', margin: '0 auto 2.5rem auto' }}></div>
+{/* 🏢 11. CORPORATE CLIENTS SECTION (MOVING MARQUEE + 3-COLUMN CARD) */}
+      <section style={{ padding: '5rem 0', backgroundColor: '#ffffff', textAlign: 'center', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+          <h2 style={{ fontSize: '1.8rem', color: '#2b704a', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            SOME ORGANIZATIONS THAT HAVE USED OUR SERVICES
+          </h2>
+          <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', margin: '0 auto 3rem auto' }}></div>
+        </div>
 
-        <div 
-          style={{ 
-            backgroundColor: '#ffffff', 
-            border: '1px solid #eaecf0', 
-            borderTop: '4px solid #2b704a', 
-            borderRadius: '8px', 
-            padding: '3rem 2.5rem', 
-            boxShadow: '0 4px 12px rgba(0,0,0,0.03)', 
-            display: 'grid', 
-            gridTemplateColumns: '1fr 1fr 1fr 1fr', 
-            gap: '2rem',
-            ...cardHoverStyle
-          }}
-          onMouseEnter={handleCardMouseEnter}
-          onMouseLeave={handleCardMouseLeave}
-        >
-          <div>{renderNumberedList(orgsCol1, 1)}</div>
-          <div>{renderNumberedList(orgsCol2, 14)}</div>
-          <div>{renderNumberedList(orgsCol3, 27)}</div>
-          <div>{renderNumberedList(orgsCol4, 40)}</div>
+        {/* 1. Moving Logos Marquee */}
+        <div className="marquee-container">
+          <div className="marquee-content">
+            {corporateClients.map((client, idx) => (
+              <div 
+                key={`corp1-${idx}`} 
+                className="marquee-item" 
+                style={{ 
+                  margin: '0 2.5rem', 
+                  transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+                  cursor: 'pointer',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px) scale(1.18)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                }}
+              >
+                <div style={{ height: '90px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {client.logo ? (
+                    <img 
+                      src={client.logo} 
+                      alt={client.name} 
+                      title={client.name}
+                      style={{ maxHeight: '65px', maxWidth: '170px', width: 'auto', objectFit: 'contain', transform: client.scale || 'none', transformOrigin: 'center', transition: 'transform 0.3s ease' }} 
+                    />
+                  ) : (
+                    <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#344054' }}>
+                      {client.name}
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="marquee-content" aria-hidden="true">
+            {corporateClients.map((client, idx) => (
+              <div 
+                key={`corp2-${idx}`} 
+                className="marquee-item" 
+                style={{ 
+                  margin: '0 2.5rem', 
+                  transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+                  cursor: 'pointer',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px) scale(1.18)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                }}
+              >
+                <div style={{ height: '90px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {client.logo ? (
+                    <img 
+                      src={client.logo} 
+                      alt={client.name} 
+                      title={client.name}
+                      style={{ maxHeight: '65px', maxWidth: '170px', width: 'auto', objectFit: 'contain' }} 
+                    />
+                  ) : (
+                    <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#344054' }}>
+                      {client.name}
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 2. Additional Corporate Clients Card (3 Columns) */}
+        <div style={{ maxWidth: '1200px', margin: '3.5rem auto 0 auto', padding: '0 2rem' }}>
+          <div style={{
+            backgroundColor: '#ffffff',
+            border: '1.5px solid #2b704a',
+            borderRadius: '8px',
+            padding: '2.5rem',
+            textAlign: 'left',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.03)'
+          }}>
+            <h3 style={{ 
+              fontSize: '1.1rem', 
+              color: '#2b704a', 
+              fontWeight: '800', 
+              borderBottom: '2px solid #2b704a', 
+              paddingBottom: '0.5rem', 
+              marginBottom: '1.8rem', 
+              textTransform: 'uppercase' 
+            }}>
+              ADDITIONAL TRUSTED CORPORATE PARTNERS
+            </h3>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '2rem' }}>
+              <div>{renderNumberedList(additionalCol1, 1)}</div>
+              <div>{renderNumberedList(additionalCol2, 7)}</div>
+              <div>{renderNumberedList(additionalCol3, 13)}</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1042,16 +1162,34 @@ const About = () => {
         <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', margin: '0 auto 3.5rem auto' }}></div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', alignItems: 'stretch' }}>
-          {/* Form 1 */}
-          <div style={{ backgroundColor: '#ffffff', border: '1px solid #eaecf0', borderTop: '4px solid #2b704a', borderRadius: '8px', padding: '2.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          {/* Form 1: INDIVIDUAL OR PERSONAL REQUEST */}
+          <div 
+            style={{ 
+              backgroundColor: '#ffffff', 
+              border: '1px solid #eaecf0', 
+              borderTop: '4px solid #2b704a', 
+              borderRadius: '8px', 
+              padding: '2.5rem', 
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justify: 'space-between',
+              ...cardHoverStyle 
+            }}
+            onMouseEnter={handleCardMouseEnter}
+            onMouseLeave={handleCardMouseLeave}
+          >
             <div>
-              <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Request For Course Details</h3>
+              <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>INDIVIDUAL OR PERSONAL REQUEST</h3>
+
               <form onSubmit={handleCourseSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div><label style={labelStyle}>Name:</label><input type="text" required value={courseForm.name} onChange={(e) => setCourseForm({ ...courseForm, name: e.target.value })} style={inputStyle} placeholder="Your Full Name" /></div>
-                <div><label style={labelStyle}>Email:</label><input type="email" required value={courseForm.email} onChange={(e) => setCourseForm({ ...courseForm, email: e.target.value })} style={inputStyle} placeholder="name@example.com" /></div>
-                <div><label style={labelStyle}>Mobile / WhatsApp:</label><input type="tel" required value={courseForm.phone} onChange={(e) => setCourseForm({ ...courseForm, phone: e.target.value })} style={inputStyle} placeholder="+234 / +44 Phone Number" /></div>
+                <div><label style={labelStyle}>Name of Contact Person:</label><input type="text" required value={courseForm.name} onChange={(e) => setCourseForm({ ...courseForm, name: e.target.value })} style={inputStyle} placeholder="Your Full Name" /></div>
+                <div><label style={labelStyle}>Official email:</label><input type="email" required value={courseForm.email} onChange={(e) => setCourseForm({ ...courseForm, email: e.target.value })} style={inputStyle} placeholder="name@example.com" /></div>
+                <div><label style={labelStyle}>Mobile/WhatsApp:</label><input type="tel" required value={courseForm.phone} onChange={(e) => setCourseForm({ ...courseForm, phone: e.target.value })} style={inputStyle} placeholder="+234 / +44 Phone Number" /></div>
+                <div><label style={labelStyle}>Name of Organisation:</label><input type="text" value={courseForm.organisation} onChange={(e) => setCourseForm({ ...courseForm, organisation: e.target.value })} style={inputStyle} placeholder="Organisation / Self-employed" /></div>
                 <div><label style={labelStyle}>Course or Service of Choice:</label><input type="text" required value={courseForm.choice} onChange={(e) => setCourseForm({ ...courseForm, choice: e.target.value })} style={inputStyle} placeholder="e.g. NEBOSH IGC" /></div>
-                <div><label style={labelStyle}>Country of Location:</label><input type="text" required value={courseForm.country} onChange={(e) => setCourseForm({ ...courseForm, country: e.target.value })} style={inputStyle} placeholder="e.g. Nigeria / UK" /></div>
+                <div><label style={labelStyle}>Country of location:</label><input type="text" required value={courseForm.country} onChange={(e) => setCourseForm({ ...courseForm, country: e.target.value })} style={inputStyle} placeholder="e.g. Nigeria / UK" /></div>
+
                 <button 
                   type="submit" 
                   style={{ backgroundColor: '#2b704a', color: '#ffffff', fontWeight: '800', padding: '0.8rem', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.5rem', transition: 'all 0.25s ease' }} 
@@ -1068,16 +1206,34 @@ const About = () => {
             </div>
           </div>
 
-          {/* Form 2 */}
-          <div style={{ backgroundColor: '#ffffff', border: '1px solid #eaecf0', borderTop: '4px solid #2b704a', borderRadius: '8px', padding: '2.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          {/* Form 2: COMPANY OR CORPORATE REQUEST */}
+          <div 
+            style={{ 
+              backgroundColor: '#ffffff', 
+              border: '1px solid #eaecf0', 
+              borderTop: '4px solid #2b704a', 
+              borderRadius: '8px', 
+              padding: '2.5rem', 
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justify: 'space-between',
+              ...cardHoverStyle 
+            }}
+            onMouseEnter={handleCardMouseEnter}
+            onMouseLeave={handleCardMouseLeave}
+          >
             <div>
-              <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Request For Proposal Or Quote</h3>
+              <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>COMPANY OR CORPORATE REQUEST</h3>
+
               <form onSubmit={handleQuoteSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div><label style={labelStyle}>Name:</label><input type="text" required value={quoteForm.name} onChange={(e) => setQuoteForm({ ...quoteForm, name: e.target.value })} style={inputStyle} placeholder="Your Full Name" /></div>
-                <div><label style={labelStyle}>Email:</label><input type="email" required value={quoteForm.email} onChange={(e) => setQuoteForm({ ...quoteForm, email: e.target.value })} style={inputStyle} placeholder="name@example.com" /></div>
-                <div><label style={labelStyle}>Mobile / WhatsApp:</label><input type="tel" required value={quoteForm.phone} onChange={(e) => setQuoteForm({ ...quoteForm, phone: e.target.value })} style={inputStyle} placeholder="+234 / +44 Phone Number" /></div>
-                <div><label style={labelStyle}>Service of Choice:</label><input type="text" required value={quoteForm.service} onChange={(e) => setQuoteForm({ ...quoteForm, service: e.target.value })} style={inputStyle} placeholder="e.g. ISO 9001 Audit" /></div>
-                <div><label style={labelStyle}>Country of Location:</label><input type="text" required value={quoteForm.country} onChange={(e) => setQuoteForm({ ...quoteForm, country: e.target.value })} style={inputStyle} placeholder="e.g. Nigeria / UK" /></div>
+                <div><label style={labelStyle}>Name of Contact Person:</label><input type="text" required value={quoteForm.name} onChange={(e) => setQuoteForm({ ...quoteForm, name: e.target.value })} style={inputStyle} placeholder="Your Full Name" /></div>
+                <div><label style={labelStyle}>Official email:</label><input type="email" required value={quoteForm.email} onChange={(e) => setQuoteForm({ ...quoteForm, email: e.target.value })} style={inputStyle} placeholder="name@company.com" /></div>
+                <div><label style={labelStyle}>Mobile/WhatsApp:</label><input type="tel" required value={quoteForm.phone} onChange={(e) => setQuoteForm({ ...quoteForm, phone: e.target.value })} style={inputStyle} placeholder="+234 / +44 Phone Number" /></div>
+                <div><label style={labelStyle}>Name of Organisation:</label><input type="text" required value={quoteForm.organisation} onChange={(e) => setQuoteForm({ ...quoteForm, organisation: e.target.value })} style={inputStyle} placeholder="Company / Organisation Name" /></div>
+                <div><label style={labelStyle}>Course or Service of Choice:</label><input type="text" required value={quoteForm.service} onChange={(e) => setQuoteForm({ ...quoteForm, service: e.target.value })} style={inputStyle} placeholder="e.g. ISO 9001 Audit" /></div>
+                <div><label style={labelStyle}>Country of location:</label><input type="text" required value={quoteForm.country} onChange={(e) => setQuoteForm({ ...quoteForm, country: e.target.value })} style={inputStyle} placeholder="e.g. Nigeria / UK" /></div>
+
                 <button 
                   type="submit" 
                   style={{ backgroundColor: '#2b704a', color: '#ffffff', fontWeight: '800', padding: '0.8rem', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.5rem', transition: 'all 0.25s ease' }} 
@@ -1132,29 +1288,57 @@ const About = () => {
         </div>
       </section>
 
-      {/* 🤝 14. MOVING CLIENT & PARTNER CAROUSEL LOOP */}
+      {/* 🤝 14. MOVING ACCREDITATION LOGO CAROUSEL LOOP */}
       <section style={{ padding: '5rem 0', textAlign: 'center', backgroundColor: 'var(--color-light-gray)', overflow: 'hidden', marginTop: '5rem' }}>
         <div style={{ fontSize: '0.9rem', fontWeight: '800', color: '#475467', letterSpacing: '1px', marginBottom: '3rem', textTransform: 'uppercase' }}>
-          Trained Teams & Corporate Partners Across Major Industries
+          ACCREDITATIONS, AFFILIATIONS AND ASSOCIATIONS
         </div>
         <div className="marquee-container">
           <div className="marquee-content">
             {clientLogos.map((item, idx) => (
-              <div key={`loop1-${idx}`} className="marquee-item" style={{ margin: '0 3.5rem' }}>
+              <div 
+                key={`loop1-${idx}`} 
+                className="marquee-item" 
+                style={{ 
+                  margin: '0 3.5rem', 
+                  transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+                  cursor: 'pointer' 
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                }}
+              >
                 <div style={{ height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <img src={item.logo} alt={item.name} style={{ maxHeight: '95px', maxWidth: '240px', width: 'auto', objectFit: 'contain', transform: item.scale, transformOrigin: 'center', transition: 'transform 0.3s ease' }} />
                 </div>
-                <span style={{ fontWeight: '700', fontSize: '0.9rem', color: '#344054', marginTop: '0.5rem' }}>{item.name}</span>
+                <span style={{ fontWeight: '700', fontSize: '0.9rem', color: '#344054', marginTop: '0.5rem', display: 'block' }}>{item.name}</span>
               </div>
             ))}
           </div>
           <div className="marquee-content" aria-hidden="true">
             {clientLogos.map((item, idx) => (
-              <div key={`loop2-${idx}`} className="marquee-item" style={{ margin: '0 3.5rem' }}>
+              <div 
+                key={`loop2-${idx}`} 
+                className="marquee-item" 
+                style={{ 
+                  margin: '0 3.5rem', 
+                  transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+                  cursor: 'pointer' 
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                }}
+              >
                 <div style={{ height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <img src={item.logo} alt={item.name} style={{ maxHeight: '95px', maxWidth: '240px', width: 'auto', objectFit: 'contain', transform: item.scale, transformOrigin: 'center', transition: 'transform 0.3s ease' }} />
                 </div>
-                <span style={{ fontWeight: '700', fontSize: '0.9rem', color: '#344054', marginTop: '0.5rem' }}>{item.name}</span>
+                <span style={{ fontWeight: '700', fontSize: '0.9rem', color: '#344054', marginTop: '0.5rem', display: 'block' }}>{item.name}</span>
               </div>
             ))}
           </div>

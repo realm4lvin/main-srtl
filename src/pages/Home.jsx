@@ -120,12 +120,12 @@ const Home = () => {
     "Oil Spill Contingency Plan"
   ];
 
-  // Registration Documents List Items
+// Registration Documents List Items
   const registrationDocs = [
     { label: "Download Training Calendar", file: "/docs/training-calendar.pdf" },
-    { label: "Download Registration Form", file: "/docs/registration-form.pdf" },
+    { label: "Download Registration Form", file: "/docs/registration-form.docx" },
     { label: "Download Course Selection Guide", file: "/docs/course-selection-guide.pdf" },
-    { label: "Download Terms and Conditions", file: "/docs/terms-and-conditions.pdf" }
+    { label: "Download Terms and Conditions", file: "/docs/terms-and-conditions.docx" }
   ];
 
   const submissionDocs = [
@@ -136,18 +136,32 @@ const Home = () => {
   ];
 
   // Form State Handlers
-  const [courseForm, setCourseForm] = useState({ name: '', email: '', phone: '', choice: '', country: '' });
-  const [quoteForm, setQuoteForm] = useState({ name: '', email: '', phone: '', service: '', country: '' });
+  const [courseForm, setCourseForm] = useState({ name: '', email: '', phone: '', organisation: '', choice: '', country: '' });
+  const [quoteForm, setQuoteForm] = useState({ name: '', email: '', phone: '', organisation: '', service: '', country: '' });
 
   const handleCourseSubmit = (e) => {
     e.preventDefault();
-    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=Request for Course Details&body=Name: ${encodeURIComponent(courseForm.name)}%0AEmail: ${encodeURIComponent(courseForm.email)}%0AMobile/WhatsApp: ${encodeURIComponent(courseForm.phone)}%0ACourse/Service: ${encodeURIComponent(courseForm.choice)}%0ACountry: ${encodeURIComponent(courseForm.country)}`;
+    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=${encodeURIComponent('Individual or Personal Request')}&body=${encodeURIComponent(
+      `Name of Contact Person: ${courseForm.name}\n` +
+      `Official email: ${courseForm.email}\n` +
+      `Mobile/WhatsApp: ${courseForm.phone}\n` +
+      `Name of Organisation: ${courseForm.organisation}\n` +
+      `Course or Service of Choice: ${courseForm.choice}\n` +
+      `Country of location: ${courseForm.country}`
+    )}`;
     window.location.href = mailtoUrl;
   };
 
   const handleQuoteSubmit = (e) => {
     e.preventDefault();
-    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=Request for Proposal or Quote&body=Name: ${encodeURIComponent(quoteForm.name)}%0AEmail: ${encodeURIComponent(quoteForm.email)}%0AMobile/WhatsApp: ${encodeURIComponent(quoteForm.phone)}%0AService of Choice: ${encodeURIComponent(quoteForm.service)}%0ACountry: ${encodeURIComponent(quoteForm.country)}`;
+    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=${encodeURIComponent('Company or Corporate Request')}&body=${encodeURIComponent(
+      `Name of Contact Person: ${quoteForm.name}\n` +
+      `Official email: ${quoteForm.email}\n` +
+      `Mobile/WhatsApp: ${quoteForm.phone}\n` +
+      `Name of Organisation: ${quoteForm.organisation}\n` +
+      `Course or Service of Choice: ${quoteForm.service}\n` +
+      `Country of location: ${quoteForm.country}`
+    )}`;
     window.location.href = mailtoUrl;
   };
 
@@ -189,44 +203,67 @@ const Home = () => {
     </ul>
   );
 
-  const renderDownloadItems = (items) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', margin: '0 0 1.5rem 0' }}>
-      {items.map((item, idx) => (
-        <a
-          key={idx}
-          href={item.file}
-          download
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            padding: '0.75rem 1rem',
-            backgroundColor: '#f4f9f6',
-            border: '1.5px solid #2b704a',
-            borderRadius: '6px',
-            color: '#2b704a',
-            fontWeight: '700',
-            fontSize: '0.88rem',
-            textDecoration: 'none',
-            transition: 'all 0.25s ease',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#2b704a';
-            e.currentTarget.style.color = '#ffffff';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 6px 12px rgba(43, 112, 74, 0.2)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#f4f9f6';
-            e.currentTarget.style.color = '#2b704a';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.02)';
-          }}
-        >
-          <span>{item.label}</span>
-        </a>
-      ))}
+const renderDownloadItems = (items) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', margin: '0 0 1.5rem 0' }}>
+      {items.map((item, idx) => {
+        const isDocx = item.file.endsWith('.docx');
+        return (
+          <a
+            key={idx}
+            href={item.file}
+            download
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justify: 'space-between',
+              padding: '0.85rem 1.1rem',
+              backgroundColor: '#ffffff',
+              border: '1.5px solid #eaecf0',
+              borderLeft: '5px solid #2b704a',
+              borderRadius: '8px',
+              color: '#101828',
+              fontWeight: '800',
+              fontSize: '0.88rem',
+              textDecoration: 'none',
+              boxShadow: '0 3px 8px rgba(0,0,0,0.04)',
+              transition: 'all 0.25s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#2b704a';
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.borderColor = '#2b704a';
+              e.currentTarget.style.transform = 'translateX(5px)';
+              e.currentTarget.style.boxShadow = '0 8px 18px rgba(43, 112, 74, 0.25)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.color = '#101828';
+              e.currentTarget.style.borderColor = '#eaecf0';
+              e.currentTarget.style.transform = 'translateX(0)';
+              e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.04)';
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+              <span style={{ fontSize: '1.1rem' }}>📥</span>
+              <span style={{ letterSpacing: '0.2px' }}>{item.label}</span>
+            </div>
+
+            {/* File Format Badge */}
+            <span style={{
+              fontSize: '0.7rem',
+              fontWeight: '900',
+              padding: '0.2rem 0.55rem',
+              borderRadius: '4px',
+              backgroundColor: isDocx ? '#0078d4' : '#d92d20',
+              color: '#ffffff',
+              letterSpacing: '0.5px'
+            }}>
+              {isDocx ? 'DOCX' : 'PDF'}
+            </span>
+          </a>
+        );
+      })}
     </div>
   );
 
@@ -405,7 +442,7 @@ const Home = () => {
             <div style={{ height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <img src={cqiBadge} alt="CQI-IRCA Logo" loading="lazy" style={{ maxHeight: '160px', maxWidth: '320px', width: 'auto', objectFit: 'contain', transform: 'scale(1.35)', transformOrigin: 'center' }} />
             </div>
-            <span style={{ fontWeight: '800', fontSize: '1rem', color: 'var(--color-dark)', letterSpacing: '0.5px' }}>CQI-IRCA TRAINING CENTER</span>
+            <span style={{ fontWeight: '800', fontSize: '1rem', color: 'var(--color-dark)', letterSpacing: '0.5px' }}>CQI-IRCA ISO TRAINING CENTER</span>
           </div>
         </div>
       </section>
@@ -669,16 +706,33 @@ const Home = () => {
           <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', margin: '0 auto 3.5rem auto' }}></div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', alignItems: 'stretch' }}>
-            <div style={{ backgroundColor: '#ffffff', border: '1px solid #eaecf0', borderTop: '4px solid #2b704a', borderRadius: '8px', padding: '2.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            {/* Form 1: INDIVIDUAL OR PERSONAL REQUEST */}
+            <div 
+              style={{ 
+                backgroundColor: '#ffffff', 
+                border: '1px solid #eaecf0', 
+                borderTop: '4px solid #2b704a', 
+                borderRadius: '8px', 
+                padding: '2.5rem', 
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', 
+                display: 'flex', 
+                flexDirection: 'column', 
+                justify: 'space-between',
+                ...cardHoverStyle 
+              }}
+              onMouseEnter={handleCardMouseEnter}
+              onMouseLeave={handleCardMouseLeave}
+            >
               <div>
-                <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Request For Course Details</h3>
+                <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>INDIVIDUAL OR PERSONAL REQUEST</h3>
 
                 <form onSubmit={handleCourseSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div><label style={labelStyle}>Name:</label><input type="text" required value={courseForm.name} onChange={(e) => setCourseForm({ ...courseForm, name: e.target.value })} style={inputStyle} placeholder="Your Full Name" /></div>
-                  <div><label style={labelStyle}>Email:</label><input type="email" required value={courseForm.email} onChange={(e) => setCourseForm({ ...courseForm, email: e.target.value })} style={inputStyle} placeholder="name@example.com" /></div>
-                  <div><label style={labelStyle}>Mobile / WhatsApp:</label><input type="tel" required value={courseForm.phone} onChange={(e) => setCourseForm({ ...courseForm, phone: e.target.value })} style={inputStyle} placeholder="+234 / +44 Phone Number" /></div>
+                  <div><label style={labelStyle}>Name of Contact Person:</label><input type="text" required value={courseForm.name} onChange={(e) => setCourseForm({ ...courseForm, name: e.target.value })} style={inputStyle} placeholder="Your Full Name" /></div>
+                  <div><label style={labelStyle}>Official email:</label><input type="email" required value={courseForm.email} onChange={(e) => setCourseForm({ ...courseForm, email: e.target.value })} style={inputStyle} placeholder="name@example.com" /></div>
+                  <div><label style={labelStyle}>Mobile/WhatsApp:</label><input type="tel" required value={courseForm.phone} onChange={(e) => setCourseForm({ ...courseForm, phone: e.target.value })} style={inputStyle} placeholder="+234 / +44 Phone Number" /></div>
+                  <div><label style={labelStyle}>Name of Organisation:</label><input type="text" value={courseForm.organisation} onChange={(e) => setCourseForm({ ...courseForm, organisation: e.target.value })} style={inputStyle} placeholder="Organisation / Self-employed" /></div>
                   <div><label style={labelStyle}>Course or Service of Choice:</label><input type="text" required value={courseForm.choice} onChange={(e) => setCourseForm({ ...courseForm, choice: e.target.value })} style={inputStyle} placeholder="e.g. NEBOSH IGC" /></div>
-                  <div><label style={labelStyle}>Country of Location:</label><input type="text" required value={courseForm.country} onChange={(e) => setCourseForm({ ...courseForm, country: e.target.value })} style={inputStyle} placeholder="e.g. Nigeria / UK" /></div>
+                  <div><label style={labelStyle}>Country of location:</label><input type="text" required value={courseForm.country} onChange={(e) => setCourseForm({ ...courseForm, country: e.target.value })} style={inputStyle} placeholder="e.g. Nigeria / UK" /></div>
 
                   <button type="submit" style={{ backgroundColor: '#2b704a', color: '#ffffff', fontWeight: '800', padding: '0.8rem', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.5rem', transition: 'all 0.25s ease' }} onMouseEnter={(e) => { e.target.style.backgroundColor = '#1e5235'; e.target.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.target.style.backgroundColor = '#2b704a'; e.target.style.transform = 'translateY(0)'; }}>
                     Submit
@@ -692,16 +746,33 @@ const Home = () => {
               </div>
             </div>
 
-            <div style={{ backgroundColor: '#ffffff', border: '1px solid #eaecf0', borderTop: '4px solid #2b704a', borderRadius: '8px', padding: '2.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            {/* Form 2: COMPANY OR CORPORATE REQUEST */}
+            <div 
+              style={{ 
+                backgroundColor: '#ffffff', 
+                border: '1px solid #eaecf0', 
+                borderTop: '4px solid #2b704a', 
+                borderRadius: '8px', 
+                padding: '2.5rem', 
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', 
+                display: 'flex', 
+                flexDirection: 'column', 
+                justify: 'space-between',
+                ...cardHoverStyle 
+              }}
+              onMouseEnter={handleCardMouseEnter}
+              onMouseLeave={handleCardMouseLeave}
+            >
               <div>
-                <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Request For Proposal Or Quote</h3>
+                <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>COMPANY OR CORPORATE REQUEST</h3>
 
                 <form onSubmit={handleQuoteSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div><label style={labelStyle}>Name:</label><input type="text" required value={quoteForm.name} onChange={(e) => setQuoteForm({ ...quoteForm, name: e.target.value })} style={inputStyle} placeholder="Your Full Name" /></div>
-                  <div><label style={labelStyle}>Email:</label><input type="email" required value={quoteForm.email} onChange={(e) => setQuoteForm({ ...quoteForm, email: e.target.value })} style={inputStyle} placeholder="name@example.com" /></div>
-                  <div><label style={labelStyle}>Mobile / WhatsApp:</label><input type="tel" required value={quoteForm.phone} onChange={(e) => setQuoteForm({ ...quoteForm, phone: e.target.value })} style={inputStyle} placeholder="+234 / +44 Phone Number" /></div>
-                  <div><label style={labelStyle}>Service of Choice:</label><input type="text" required value={quoteForm.service} onChange={(e) => setQuoteForm({ ...quoteForm, service: e.target.value })} style={inputStyle} placeholder="e.g. ISO 9001 Audit" /></div>
-                  <div><label style={labelStyle}>Country of Location:</label><input type="text" required value={quoteForm.country} onChange={(e) => setQuoteForm({ ...quoteForm, country: e.target.value })} style={inputStyle} placeholder="e.g. Nigeria / UK" /></div>
+                  <div><label style={labelStyle}>Name of Contact Person:</label><input type="text" required value={quoteForm.name} onChange={(e) => setQuoteForm({ ...quoteForm, name: e.target.value })} style={inputStyle} placeholder="Your Full Name" /></div>
+                  <div><label style={labelStyle}>Official email:</label><input type="email" required value={quoteForm.email} onChange={(e) => setQuoteForm({ ...quoteForm, email: e.target.value })} style={inputStyle} placeholder="name@company.com" /></div>
+                  <div><label style={labelStyle}>Mobile/WhatsApp:</label><input type="tel" required value={quoteForm.phone} onChange={(e) => setQuoteForm({ ...quoteForm, phone: e.target.value })} style={inputStyle} placeholder="+234 / +44 Phone Number" /></div>
+                  <div><label style={labelStyle}>Name of Organisation:</label><input type="text" required value={quoteForm.organisation} onChange={(e) => setQuoteForm({ ...quoteForm, organisation: e.target.value })} style={inputStyle} placeholder="Company / Organisation Name" /></div>
+                  <div><label style={labelStyle}>Course or Service of Choice:</label><input type="text" required value={quoteForm.service} onChange={(e) => setQuoteForm({ ...quoteForm, service: e.target.value })} style={inputStyle} placeholder="e.g. ISO 9001 Audit" /></div>
+                  <div><label style={labelStyle}>Country of location:</label><input type="text" required value={quoteForm.country} onChange={(e) => setQuoteForm({ ...quoteForm, country: e.target.value })} style={inputStyle} placeholder="e.g. Nigeria / UK" /></div>
 
                   <button type="submit" style={{ backgroundColor: '#2b704a', color: '#ffffff', fontWeight: '800', padding: '0.8rem', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.5rem', transition: 'all 0.25s ease' }} onMouseEnter={(e) => { e.target.style.backgroundColor = '#1e5235'; e.target.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.target.style.backgroundColor = '#2b704a'; e.target.style.transform = 'translateY(0)'; }}>
                     Submit
@@ -740,29 +811,65 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CLIENT CAROUSEL LOOP */}
+{/* 🤝 7. MOVING CLIENT LOGO CAROUSEL LOOP */}
       <section style={{ padding: '5rem 0', textAlign: 'center', backgroundColor: 'var(--color-light-gray)', overflow: 'hidden' }}>
         <div style={{ fontSize: '0.9rem', fontWeight: '800', color: '#475467', letterSpacing: '1px', marginBottom: '3rem', textTransform: 'uppercase' }}>
-          Trained Teams & Corporate Partners Across Major Industries
+          ACCREDITATIONS, AFFILIATIONS AND ASSOCIATIONS
         </div>
         <div className="marquee-container">
           <div className="marquee-content">
             {clientLogos.map((item, idx) => (
-              <div key={`loop1-${idx}`} className="marquee-item" style={{ margin: '0 3.5rem' }}>
-                <div style={{ height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={item.logo} alt={item.name} style={{ maxHeight: '95px', maxWidth: '240px', width: 'auto', objectFit: 'contain', transform: item.scale, transformOrigin: 'center', transition: 'transform 0.3s ease' }} />
+              <div 
+                key={`loop1-${idx}`} 
+                className="marquee-item" 
+                style={{ 
+                  margin: '0 3.5rem', 
+                  transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+                  cursor: 'pointer' 
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                }}
+              >
+                <div style={{ height: '115px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img 
+                    src={item.logo} 
+                    alt={item.name} 
+                    style={{ maxHeight: '90px', maxWidth: '220px', width: 'auto', objectFit: 'contain', transform: item.scale, transformOrigin: 'center', transition: 'transform 0.3s ease' }} 
+                  />
                 </div>
-                <span style={{ fontWeight: '700', fontSize: '0.9rem', color: '#344054', marginTop: '0.5rem' }}>{item.name}</span>
+                <span style={{ fontWeight: '700', fontSize: '0.9rem', color: '#344054', marginTop: '0.5rem', display: 'block' }}>{item.name}</span>
               </div>
             ))}
           </div>
           <div className="marquee-content" aria-hidden="true">
             {clientLogos.map((item, idx) => (
-              <div key={`loop2-${idx}`} className="marquee-item" style={{ margin: '0 3.5rem' }}>
-                <div style={{ height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={item.logo} alt={item.name} style={{ maxHeight: '95px', maxWidth: '240px', width: 'auto', objectFit: 'contain', transform: item.scale, transformOrigin: 'center', transition: 'transform 0.3s ease' }} />
+              <div 
+                key={`loop2-${idx}`} 
+                className="marquee-item" 
+                style={{ 
+                  margin: '0 3.5rem', 
+                  transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+                  cursor: 'pointer' 
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                }}
+              >
+                <div style={{ height: '115px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img 
+                    src={item.logo} 
+                    alt={item.name} 
+                    style={{ maxHeight: '90px', maxWidth: '220px', width: 'auto', objectFit: 'contain', transform: item.scale, transformOrigin: 'center', transition: 'transform 0.3s ease' }} 
+                  />
                 </div>
-                <span style={{ fontWeight: '700', fontSize: '0.9rem', color: '#344054', marginTop: '0.5rem' }}>{item.name}</span>
+                <span style={{ fontWeight: '700', fontSize: '0.9rem', color: '#344054', marginTop: '0.5rem', display: 'block' }}>{item.name}</span>
               </div>
             ))}
           </div>

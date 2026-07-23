@@ -20,7 +20,6 @@ function App() {
       {/* 🟢 Smooth Page Transitions & Scroll Reset */}
       <ScrollToTop />
       <PageTransitionLoader />
-
       <TopBar />
       <Navbar />
 

@@ -16,7 +16,6 @@ const Navbar = () => {
     };
 
     const handleScroll = () => {
-      // Trigger sticky state after scrolling past TopBar height (40px)
       if (window.scrollY > 40) {
         setIsSticky(true);
       } else {
@@ -36,25 +35,88 @@ const Navbar = () => {
 
   const closeMenu = () => setIsOpen(false);
 
-  const linkStyle = ({ isActive }) => ({
-    color: isActive ? '#2b704a' : '#101828',
-    fontWeight: isActive ? '700' : '500',
-    fontSize: '0.95rem',
-    transition: 'color 0.2s ease',
-    textDecoration: 'none',
-    padding: isMobile ? '0.6rem 0' : '0'
-  });
-
   return (
     <>
+      {/* Custom styles for links and hover states */}
+      <style>{`
+        .nav-link-item {
+          position: relative;
+          text-decoration: none;
+          color: #475467;
+          font-size: 0.95rem;
+          font-weight: 600;
+          padding-bottom: 4px;
+          transition: color 0.25s ease;
+          white-space: nowrap;
+        }
+
+        .nav-link-item::after {
+          content: '';
+          position: absolute;
+          width: 0%;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          background-color: #2b704a;
+          transition: width 0.3s ease, background-color 0.25s ease;
+        }
+
+        .nav-link-item:hover {
+          color: #2b704a;
+        }
+
+        .nav-link-item:hover::after {
+          width: 100%;
+        }
+
+        .nav-link-item.active {
+          color: #101828;
+        }
+
+        .nav-link-item.active:hover {
+          color: #113823;
+        }
+
+        .nav-link-item.active::after {
+          background-color: #113823;
+        }
+
+        .nav-link-item.active:hover::after {
+          width: 100%;
+        }
+
+        .btn-get-certified {
+          background-color: #2b704a;
+          color: #ffffff;
+          padding: 0.65rem 1.4rem;
+          font-weight: 700;
+          border-radius: 4px;
+          text-decoration: none;
+          text-transform: uppercase;
+          font-size: 0.85rem;
+          text-align: center;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+          display: inline-block;
+          white-space: nowrap;
+        }
+
+        .btn-get-certified:hover {
+          background-color: #fdb813 !important;
+          color: #101828 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(253, 184, 19, 0.35);
+        }
+      `}</style>
+
       {/* Invisible spacer div prevents content jumping when Navbar becomes fixed */}
-      {isSticky && <div style={{ height: isMobile ? '60px' : '72px' }} />}
+      {isSticky && <div style={{ height: isMobile ? '68px' : '90px' }} />}
 
       <nav style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: isMobile ? '0.8rem 1rem' : '1rem 2rem',
+        padding: isMobile ? '0.7rem 1rem' : '0.7rem 2rem',
         backgroundColor: '#ffffff',
         boxShadow: isSticky ? '0 4px 12px rgba(0, 0, 0, 0.1)' : '0 2px 4px rgba(0,0,0,0.05)',
         position: isSticky ? 'fixed' : 'relative',
@@ -67,12 +129,17 @@ const Navbar = () => {
         boxSizing: 'border-box',
         transition: 'background-color 0.2s ease, box-shadow 0.2s ease'
       }}>
-        {/* Brand Logo */}
-        <Link to="/" onClick={closeMenu} style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+        {/* Prominent Horizontally Scaled Logo */}
+        <Link to="/" onClick={closeMenu} style={{ display: 'flex', alignItems: 'center' }}>
           <img 
             src={logo} 
             alt="Safeguard Safety Logo" 
-            style={{ height: isMobile ? '40px' : '50px', objectFit: 'contain' }} 
+            style={{ 
+              height: isMobile ? '52px' : '78px', 
+              width: 'auto',
+              objectFit: 'contain',
+              transition: 'all 0.2s ease'
+            }} 
           />
         </Link>
 
@@ -111,37 +178,25 @@ const Navbar = () => {
           display: isMobile ? (isOpen ? 'flex' : 'none') : 'flex',
           flexDirection: isMobile ? 'column' : 'row',
           width: isMobile ? '100%' : 'auto',
-          gap: isMobile ? '0.8rem' : '2rem', 
+          gap: isMobile ? '1rem' : '2rem', 
           alignItems: isMobile ? 'flex-start' : 'center',
           paddingTop: isMobile ? '1rem' : '0',
           borderTop: isMobile ? '1px solid #eaecf0' : 'none',
           marginTop: isMobile ? '0.8rem' : '0'
         }}>
-          <NavLink to="/" onClick={closeMenu} style={linkStyle}>Home</NavLink>
-          <NavLink to="/about" onClick={closeMenu} style={linkStyle}>About Us</NavLink>
-          <NavLink to="/services" onClick={closeMenu} style={linkStyle}>Services</NavLink>
-          <NavLink to="/contact" onClick={closeMenu} style={linkStyle}>Contact</NavLink>
+          <NavLink to="/" onClick={closeMenu} className="nav-link-item">Home</NavLink>
+          <NavLink to="/about" onClick={closeMenu} className="nav-link-item">About Us</NavLink>
+          <NavLink to="/services" onClick={closeMenu} className="nav-link-item">Courses and Services</NavLink>
+          <NavLink to="/contact" onClick={closeMenu} className="nav-link-item">Contact</NavLink>
           
           <Link 
             to="/get-certified" 
             onClick={closeMenu}
             className="btn-get-certified"
             style={{
-              backgroundColor: '#2b704a',
-              color: '#ffffff',
-              padding: '0.6rem 1.4rem',
-              fontWeight: '700',
-              borderRadius: '4px',
-              textDecoration: 'none',
-              textTransform: 'uppercase',
-              fontSize: '0.85rem',
               marginTop: isMobile ? '0.4rem' : '0',
-              width: isMobile ? '100%' : 'auto',
-              textAlign: 'center',
-              transition: 'all 0.25s ease'
+              width: isMobile ? '100%' : 'auto'
             }}
-            onMouseEnter={(e) => e.target.style.backgroundColor = '#1e5235'}
-            onMouseLeave={(e) => e.target.style.backgroundColor = '#2b704a'}
           >
             Get Certified
           </Link>

@@ -42,6 +42,7 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
+    organisation: '',
     choice: '',
     country: '',
     message: ''
@@ -51,6 +52,7 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
+    organisation: '',
     service: '',
     country: '',
     message: ''
@@ -58,13 +60,29 @@ const Contact = () => {
 
   const handleCourseSubmit = (e) => {
     e.preventDefault();
-    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=Request for Course Details&body=Name: ${encodeURIComponent(courseForm.name)}%0AEmail: ${encodeURIComponent(courseForm.email)}%0AMobile/WhatsApp: ${encodeURIComponent(courseForm.phone)}%0ACourse or Service: ${encodeURIComponent(courseForm.choice)}%0ACountry: ${encodeURIComponent(courseForm.country)}%0AMessage/Description: ${encodeURIComponent(courseForm.message)}`;
+    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=${encodeURIComponent('Individual or Personal Request')}&body=${encodeURIComponent(
+      `Name of Contact Person: ${courseForm.name}\n` +
+      `Official email: ${courseForm.email}\n` +
+      `Mobile/Whatsapp: ${courseForm.phone}\n` +
+      `Name of Organisation: ${courseForm.organisation}\n` +
+      `Course or Service of Choice: ${courseForm.choice}\n` +
+      `Country of Location: ${courseForm.country}\n\n` +
+      `Your Message:\n${courseForm.message}`
+    )}`;
     window.location.href = mailtoUrl;
   };
 
   const handleQuoteSubmit = (e) => {
     e.preventDefault();
-    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=Request for Proposal or Quote&body=Name: ${encodeURIComponent(quoteForm.name)}%0AEmail: ${encodeURIComponent(quoteForm.email)}%0AMobile/WhatsApp: ${encodeURIComponent(quoteForm.phone)}%0AService of Choice: ${encodeURIComponent(quoteForm.service)}%0ACountry: ${encodeURIComponent(quoteForm.country)}%0AMessage/Description: ${encodeURIComponent(quoteForm.message)}`;
+    const mailtoUrl = `mailto:register@safeguardsafety.net?subject=${encodeURIComponent('Company or Corporate Request')}&body=${encodeURIComponent(
+      `Name of Contact Person: ${quoteForm.name}\n` +
+      `Official email: ${quoteForm.email}\n` +
+      `Mobile/Whatsapp: ${quoteForm.phone}\n` +
+      `Name of Organisation: ${quoteForm.organisation}\n` +
+      `Course or Service of Choice: ${quoteForm.service}\n` +
+      `Country of Location: ${quoteForm.country}\n\n` +
+      `Your Message:\n${quoteForm.message}`
+    )}`;
     window.location.href = mailtoUrl;
   };
 
@@ -129,7 +147,7 @@ const Contact = () => {
           alignItems: 'stretch'
         }}>
           
-          {/* Form 1: Request For Course Details */}
+          {/* Form 1: INDIVIDUAL OR PERSONAL REQUEST */}
           <div 
             style={{
               backgroundColor: '#ffffff',
@@ -140,7 +158,7 @@ const Contact = () => {
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between',
+              justify: 'space-between',
               ...cardHoverStyle
             }}
             onMouseEnter={handleCardMouseEnter}
@@ -148,12 +166,12 @@ const Contact = () => {
           >
             <div>
               <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
-                Request For Course Details
+                INDIVIDUAL OR PERSONAL REQUEST
               </h3>
 
               <form onSubmit={handleCourseSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div>
-                  <label style={labelStyle}>Name:</label>
+                  <label style={labelStyle}>Name of Contact Person:</label>
                   <input 
                     type="text" 
                     required 
@@ -165,7 +183,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Email:</label>
+                  <label style={labelStyle}>Official email:</label>
                   <input 
                     type="email" 
                     required 
@@ -177,7 +195,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Mobile / WhatsApp:</label>
+                  <label style={labelStyle}>Mobile/Whatsapp:</label>
                   <input 
                     type="tel" 
                     required 
@@ -185,6 +203,17 @@ const Contact = () => {
                     onChange={(e) => setCourseForm({ ...courseForm, phone: e.target.value })} 
                     style={inputStyle} 
                     placeholder="+234 / +44 Phone Number"
+                  />
+                </div>
+
+                <div>
+                  <label style={labelStyle}>Name of Organisation:</label>
+                  <input 
+                    type="text" 
+                    value={courseForm.organisation} 
+                    onChange={(e) => setCourseForm({ ...courseForm, organisation: e.target.value })} 
+                    style={inputStyle} 
+                    placeholder="Organisation / Self-employed"
                   />
                 </div>
 
@@ -213,7 +242,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label style={labelStyle}>YOUR MESSAGE:</label>
+                  <label style={labelStyle}>Your Message:</label>
                   <textarea 
                     rows={4}
                     value={courseForm.message} 
@@ -273,7 +302,7 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Form 2: Request For Proposal Or Quote */}
+          {/* Form 2: COMPANY OR CORPORATE REQUEST */}
           <div 
             style={{
               backgroundColor: '#ffffff',
@@ -284,7 +313,7 @@ const Contact = () => {
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between',
+              justify: 'space-between',
               ...cardHoverStyle
             }}
             onMouseEnter={handleCardMouseEnter}
@@ -292,12 +321,12 @@ const Contact = () => {
           >
             <div>
               <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
-                Request For Proposal Or Quote
+                COMPANY OR CORPORATE REQUEST
               </h3>
 
               <form onSubmit={handleQuoteSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div>
-                  <label style={labelStyle}>Name:</label>
+                  <label style={labelStyle}>Name of Contact Person:</label>
                   <input 
                     type="text" 
                     required 
@@ -309,19 +338,19 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Email:</label>
+                  <label style={labelStyle}>Official email:</label>
                   <input 
                     type="email" 
                     required 
                     value={quoteForm.email} 
                     onChange={(e) => setQuoteForm({ ...quoteForm, email: e.target.value })} 
                     style={inputStyle} 
-                    placeholder="name@example.com"
+                    placeholder="name@company.com"
                   />
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Mobile / WhatsApp:</label>
+                  <label style={labelStyle}>Mobile/Whatsapp:</label>
                   <input 
                     type="tel" 
                     required 
@@ -333,14 +362,26 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Service of Choice:</label>
+                  <label style={labelStyle}>Name of Organisation:</label>
+                  <input 
+                    type="text" 
+                    required
+                    value={quoteForm.organisation} 
+                    onChange={(e) => setQuoteForm({ ...quoteForm, organisation: e.target.value })} 
+                    style={inputStyle} 
+                    placeholder="Company / Organisation Name"
+                  />
+                </div>
+
+                <div>
+                  <label style={labelStyle}>Course or Service of Choice:</label>
                   <input 
                     type="text" 
                     required 
                     value={quoteForm.service} 
                     onChange={(e) => setQuoteForm({ ...quoteForm, service: e.target.value })} 
                     style={inputStyle} 
-                    placeholder="e.g. ISO 9001 Audit"
+                    placeholder="e.g. ISO 9001 Audit / Group Training"
                   />
                 </div>
 
@@ -357,7 +398,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label style={labelStyle}>YOUR MESSAGE:</label>
+                  <label style={labelStyle}>Your Message:</label>
                   <textarea 
                     rows={4}
                     value={quoteForm.message} 
