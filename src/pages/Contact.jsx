@@ -22,7 +22,7 @@ const Contact = () => {
     { logo: itfLogo, name: "ITF", scale: 'scale(1.15)' },
     { logo: nesLogo, name: "NES", scale: 'scale(1.15)' },
     { logo: fpanLogo, name: "FPAN", scale: 'scale(1.25)' },
-    { logo: neboshBadge, name: "NEBOSH", scale: 'scale(1.35)' },
+    { logo: neboshBadge, name: "NEBOSH", scale: 'scale(1.65)' }, // 👈 Increased scale here
     { logo: ioshBadge, name: "IOSH", scale: 'scale(1.2)' },
     { logo: cqiBadge, name: "CQI-IRCA", scale: 'scale(1.85)' }
   ];
@@ -195,7 +195,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Mobile/Whatsapp:</label>
+                  <label style={labelStyle}>Whatsapp:</label>
                   <input 
                     type="tel" 
                     required 
@@ -350,7 +350,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Mobile/Whatsapp:</label>
+                  <label style={labelStyle}>WhatsApp:</label>
                   <input 
                     type="tel" 
                     required 

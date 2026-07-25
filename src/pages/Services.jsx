@@ -23,7 +23,7 @@ const Services = () => {
     { logo: itfLogo, name: "ITF", scale: 'scale(1.15)' },
     { logo: nesLogo, name: "NES", scale: 'scale(1.15)' },
     { logo: fpanLogo, name: "FPAN", scale: 'scale(1.25)' },
-    { logo: neboshBadge, name: "NEBOSH", scale: 'scale(1.35)' },
+    { logo: neboshBadge, name: "NEBOSH", scale: 'scale(1.65)' }, // 👈 Increased scale here
     { logo: ioshBadge, name: "IOSH", scale: 'scale(1.2)' },
     { logo: cqiBadge, name: "CQI-IRCA", scale: 'scale(1.85)' }
   ];
@@ -103,10 +103,26 @@ const Services = () => {
 
 // Registration Documents List Items
   const registrationDocs = [
-    { label: "Download Training Calendar", file: "/docs/training-calendar.pdf" },
-    { label: "Download Registration Form", file: "/docs/registration-form.docx" },
-    { label: "Download Course Selection Guide", file: "/docs/course-selection-guide.pdf" },
-    { label: "Download Terms and Conditions", file: "/docs/terms-and-conditions.docx" }
+    { 
+      label: "Download International Training Calendar", 
+      file: "/docs/INTERNATIONAL TRAINING CALENDAR.pdf",
+      downloadName: "INTERNATIONAL TRAINING CALENDAR.pdf"
+    },
+    { 
+      label: "Download International Course Registration Form", 
+      file: "/docs/INTERNATIONAL COURSE REGISTRATION FORM.docx",
+      downloadName: "INTERNATIONAL COURSE REGISTRATION FORM.docx"
+    },
+    { 
+      label: "Download International Course Selection Guide", 
+      file: "/docs/INTERNATIONAL COURSE SELECTION GUIDE.pdf",
+      downloadName: "INTERNATIONAL COURSE SELECTION GUIDE.pdf"
+    },
+    { 
+      label: "Download International Terms and Conditions", 
+      file: "/docs/INTERNATIONAL TERMS AND CONDITIONS.docx",
+      downloadName: "INTERNATIONAL TERMS AND CONDITIONS.docx"
+    }
   ];
 
   const submissionDocs = [
@@ -195,68 +211,67 @@ const Services = () => {
 
   // Updated renderDownloadItems without the download arrow icon ⬇
 const renderDownloadItems = (items) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', margin: '0 0 1.5rem 0' }}>
-      {items.map((item, idx) => {
-        const isDocx = item.file.endsWith('.docx');
-        return (
-          <a
-            key={idx}
-            href={item.file}
-            download
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justify: 'space-between',
-              padding: '0.85rem 1.1rem',
-              backgroundColor: '#ffffff',
-              border: '1.5px solid #eaecf0',
-              borderLeft: '5px solid #2b704a',
-              borderRadius: '8px',
-              color: '#101828',
-              fontWeight: '800',
-              fontSize: '0.88rem',
-              textDecoration: 'none',
-              boxShadow: '0 3px 8px rgba(0,0,0,0.04)',
-              transition: 'all 0.25s ease',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#2b704a';
-              e.currentTarget.style.color = '#ffffff';
-              e.currentTarget.style.borderColor = '#2b704a';
-              e.currentTarget.style.transform = 'translateX(5px)';
-              e.currentTarget.style.boxShadow = '0 8px 18px rgba(43, 112, 74, 0.25)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#ffffff';
-              e.currentTarget.style.color = '#101828';
-              e.currentTarget.style.borderColor = '#eaecf0';
-              e.currentTarget.style.transform = 'translateX(0)';
-              e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.04)';
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-              <span style={{ fontSize: '1.1rem' }}>📥</span>
-              <span style={{ letterSpacing: '0.2px' }}>{item.label}</span>
-            </div>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', margin: '0 0 1.5rem 0' }}>
+    {items.map((item, idx) => {
+      const isDocx = item.file.endsWith('.docx');
+      return (
+        <a
+          key={idx}
+          href={item.file}
+          download={item.downloadName || true} /* 👈 Forces the exact downloaded file name */
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justify: 'space-between',
+            padding: '0.85rem 1.1rem',
+            backgroundColor: '#ffffff',
+            border: '1.5px solid #eaecf0',
+            borderLeft: '5px solid #2b704a',
+            borderRadius: '8px',
+            color: '#101828',
+            fontWeight: '800',
+            fontSize: '0.88rem',
+            textDecoration: 'none',
+            boxShadow: '0 3px 8px rgba(0,0,0,0.04)',
+            transition: 'all 0.25s ease',
+            cursor: 'pointer'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#2b704a';
+            e.currentTarget.style.color = '#ffffff';
+            e.currentTarget.style.borderColor = '#2b704a';
+            e.currentTarget.style.transform = 'translateX(5px)';
+            e.currentTarget.style.boxShadow = '0 8px 18px rgba(43, 112, 74, 0.25)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#ffffff';
+            e.currentTarget.style.color = '#101828';
+            e.currentTarget.style.borderColor = '#eaecf0';
+            e.currentTarget.style.transform = 'translateX(0)';
+            e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.04)';
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <span style={{ fontSize: '1.1rem' }}>📥</span>
+            <span style={{ letterSpacing: '0.2px' }}>{item.label}</span>
+          </div>
 
-            {/* File Format Badge */}
-            <span style={{
-              fontSize: '0.7rem',
-              fontWeight: '900',
-              padding: '0.2rem 0.55rem',
-              borderRadius: '4px',
-              backgroundColor: isDocx ? '#0078d4' : '#d92d20',
-              color: '#ffffff',
-              letterSpacing: '0.5px'
-            }}>
-              {isDocx ? 'DOCX' : 'PDF'}
-            </span>
-          </a>
-        );
-      })}
-    </div>
-  );
+          <span style={{
+            fontSize: '0.7rem',
+            fontWeight: '900',
+            padding: '0.2rem 0.55rem',
+            borderRadius: '4px',
+            backgroundColor: isDocx ? '#0078d4' : '#d92d20',
+            color: '#ffffff',
+            letterSpacing: '0.5px'
+          }}>
+            {isDocx ? 'DOCX' : 'PDF'}
+          </span>
+        </a>
+      );
+    })}
+  </div>
+);
   
   const renderRequestButton = () => (
     <Link 
@@ -750,22 +765,14 @@ const renderDownloadItems = (items) => (
                 
                 <div style={{ marginBottom: '1.5rem' }}>
                   <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#344054', marginBottom: '0.6rem' }}>
-                    Mobile / WhatsApp:
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.92rem' }}>
-                    <a href="https://wa.me/447878121965" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>
-                      📞 +44 787 812 1965
-                    </a>
-                    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>
-                      📞 +44 731 125 4738
-                    </a>
-                    <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>
-                      📞 +234 703 016 2747
-                    </a>
-                    <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>
-                      📞 +234 803 309 7942
-                    </a>
-                  </div>
+    WhatsApp:
+  </div>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.92rem' }}>
+    <a href="https://wa.me/447878121965" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 787 812 1965</a>
+    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 731 125 4738</a>
+    <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 703 016 2747</a>
+    <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 803 309 7942</a>
+  </div>
                 </div>
               </div>
 
@@ -937,7 +944,7 @@ const renderDownloadItems = (items) => (
                   </div>
 
                   <div>
-                    <label style={labelStyle}>Mobile/WhatsApp:</label>
+                    <label style={labelStyle}>WhatsApp:</label>
                     <input 
                       type="tel" 
                       required 
@@ -1078,7 +1085,7 @@ const renderDownloadItems = (items) => (
                   </div>
 
                   <div>
-                    <label style={labelStyle}>Mobile/WhatsApp:</label>
+                    <label style={labelStyle}>WhatsApp:</label>
                     <input 
                       type="tel" 
                       required 

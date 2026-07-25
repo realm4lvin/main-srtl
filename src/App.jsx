@@ -22,6 +22,7 @@ function App() {
       <PageTransitionLoader />
       <TopBar />
       <Navbar />
+      
 
       <main className="page-transition">
         <Routes>
