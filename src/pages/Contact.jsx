@@ -124,6 +124,43 @@ const Contact = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--color-white)', paddingBottom: '0' }}>
+
+      {/* 🖼️ CONTACT HERO BANNER (TAILORED CONTACT / SUPPORT IMAGE) */}
+      <section style={{ 
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        color: '#ffffff', 
+        padding: '5.5rem 2rem', 
+        textAlign: 'center',
+        borderBottom: '4px solid var(--color-yellow)'
+      }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <h1 style={{ 
+            fontSize: '2.4rem', 
+            fontWeight: '800', 
+            textTransform: 'uppercase', 
+            letterSpacing: '1px', 
+            marginBottom: '1rem',
+            color: '#ffffff',
+            textShadow: '0 2px 8px rgba(0,0,0,0.7)'
+          }}>
+            Contact Us
+          </h1>
+          <p style={{ 
+            fontSize: '1.1rem', 
+            color: '#ffffff', 
+            lineHeight: '1.6', 
+            margin: '0 auto', 
+            maxWidth: '820px',
+            fontWeight: '500',
+            textShadow: '0 1px 5px rgba(0,0,0,0.6)'
+          }}>
+            Get in touch with our expert QHSE team for course enquiries, registration assistance, corporate quotes, or support services.
+          </p>
+        </div>
+      </section>
       
       {/* 📩 1. REQUEST FOR FULL DETAILS OF ANY COURSE OR SERVICE OF CHOICE */}
       <section style={{ maxWidth: '1200px', margin: '3rem auto 0 auto', padding: '0 2rem' }}>

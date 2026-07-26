@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+// Online HD Unsplash Image for Hero Banner (Matches style of About page)
+const heroBgImg = "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80";
 
 // Import local brand assets
 import neboshBadge from '../assets/brand/nebosh-silver-partner.png';
@@ -15,7 +17,7 @@ import nesLogo from '../assets/clients/nes-logo.png';
 import fpanLogo from '../assets/clients/fpan-logo.png';
 
 const GetCertified = () => {
-  // Client & Partner Logo collection with balanced scale factors
+  // Client & Partner Logo collection
   const clientLogos = [
     { logo: nuprcLogo, name: "NUPRC", scale: 'scale(1.15)' },
     { logo: ncdmbLogo, name: "NCDMB", scale: 'scale(1.15)' },
@@ -23,37 +25,12 @@ const GetCertified = () => {
     { logo: itfLogo, name: "ITF", scale: 'scale(1.15)' },
     { logo: nesLogo, name: "NES", scale: 'scale(1.15)' },
     { logo: fpanLogo, name: "FPAN", scale: 'scale(1.25)' },
-    { logo: neboshBadge, name: "NEBOSH", scale: 'scale(1.65)' }, // 👈 Increased scale here
+    { logo: neboshBadge, name: "NEBOSH", scale: 'scale(1.65)' },
     { logo: ioshBadge, name: "IOSH", scale: 'scale(1.2)' },
     { logo: cqiBadge, name: "CQI-IRCA", scale: 'scale(1.85)' }
   ];
 
-  // Certification Pathways Data
-  const certificationPathways = [
-    {
-      title: "NEBOSH Qualifications",
-      badge: neboshBadge,
-      badgeAlt: "NEBOSH Silver Learning Partner",
-      desc: "Globally esteemed health, safety, and environmental qualifications designed for managers, supervisors, and safety professionals.",
-      highlights: ["Award Courses", "Certificate Courses", "Diploma Qualifications"]
-    },
-    {
-      title: "IOSH Certifications",
-      badge: ioshBadge,
-      badgeAlt: "IOSH Approved Center",
-      desc: "Practical, action-oriented safety programs empowering workforce teams and managers to maintain secure working environments.",
-      highlights: ["IOSH Working Safely", "IOSH Managing Safely"]
-    },
-    {
-      title: "CQI-IRCA ISO Lead Auditor",
-      badge: cqiBadge,
-      badgeAlt: "CQI-IRCA Approved Partner",
-      desc: "International ISO management system auditing credentials for Quality (9001), Environment (14001), and Occupational Safety (45001).",
-      highlights: ["ISO 9001 QMS", "ISO 14001 EMS", "ISO 45001 OHSMS"]
-    }
-  ];
-
-// Registration Documents List Items
+  // Registration Documents List Items
   const registrationDocs = [
     { 
       label: "Download International Training Calendar", 
@@ -124,24 +101,21 @@ const GetCertified = () => {
     window.location.href = mailtoUrl;
   };
 
-  // Reusable Card Hover Helpers
+  // Safe Hover Effects (Does NOT touch border colors to avoid stripping top green accent)
   const cardHoverStyle = {
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease'
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
   };
 
   const handleCardMouseEnter = (e) => {
     e.currentTarget.style.transform = 'translateY(-6px)';
     e.currentTarget.style.boxShadow = '0 12px 24px rgba(43, 112, 74, 0.12)';
-    e.currentTarget.style.borderColor = '#2b704a';
   };
 
   const handleCardMouseLeave = (e) => {
     e.currentTarget.style.transform = 'translateY(0)';
     e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.02)';
-    e.currentTarget.style.borderColor = '#eaecf0';
   };
 
-  // Helper rendering functions
   const renderListItems = (items) => (
     <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem 0' }}>
       {items.map((item, idx) => (
@@ -161,69 +135,69 @@ const GetCertified = () => {
     </ul>
   );
 
-  // Clean renderDownloadItems (no download arrow icon)
-const renderDownloadItems = (items) => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', margin: '0 0 1.5rem 0' }}>
-    {items.map((item, idx) => {
-      const isDocx = item.file.endsWith('.docx');
-      return (
-        <a
-          key={idx}
-          href={item.file}
-          download={item.downloadName || true} /* 👈 Forces the exact downloaded file name */
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justify: 'space-between',
-            padding: '0.85rem 1.1rem',
-            backgroundColor: '#ffffff',
-            border: '1.5px solid #eaecf0',
-            borderLeft: '5px solid #2b704a',
-            borderRadius: '8px',
-            color: '#101828',
-            fontWeight: '800',
-            fontSize: '0.88rem',
-            textDecoration: 'none',
-            boxShadow: '0 3px 8px rgba(0,0,0,0.04)',
-            transition: 'all 0.25s ease',
-            cursor: 'pointer'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#2b704a';
-            e.currentTarget.style.color = '#ffffff';
-            e.currentTarget.style.borderColor = '#2b704a';
-            e.currentTarget.style.transform = 'translateX(5px)';
-            e.currentTarget.style.boxShadow = '0 8px 18px rgba(43, 112, 74, 0.25)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#ffffff';
-            e.currentTarget.style.color = '#101828';
-            e.currentTarget.style.borderColor = '#eaecf0';
-            e.currentTarget.style.transform = 'translateX(0)';
-            e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.04)';
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <span style={{ fontSize: '1.1rem' }}>📥</span>
-            <span style={{ letterSpacing: '0.2px' }}>{item.label}</span>
-          </div>
+  const renderDownloadItems = (items) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', margin: '0 0 1.5rem 0' }}>
+      {items.map((item, idx) => {
+        const isDocx = item.file.endsWith('.docx');
+        return (
+          <a
+            key={idx}
+            href={item.file}
+            download={item.downloadName || true}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justify: 'space-between',
+              padding: '0.85rem 1.1rem',
+              backgroundColor: '#ffffff',
+              border: '1.5px solid #eaecf0',
+              borderLeft: '5px solid #2b704a',
+              borderRadius: '8px',
+              color: '#101828',
+              fontWeight: '800',
+              fontSize: '0.88rem',
+              textDecoration: 'none',
+              boxShadow: '0 3px 8px rgba(0,0,0,0.04)',
+              transition: 'all 0.25s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#2b704a';
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.borderColor = '#2b704a';
+              e.currentTarget.style.transform = 'translateX(5px)';
+              e.currentTarget.style.boxShadow = '0 8px 18px rgba(43, 112, 74, 0.25)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.color = '#101828';
+              e.currentTarget.style.borderColor = '#eaecf0';
+              e.currentTarget.style.transform = 'translateX(0)';
+              e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.04)';
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+              <span style={{ fontSize: '1.1rem' }}>📥</span>
+              <span style={{ letterSpacing: '0.2px' }}>{item.label}</span>
+            </div>
 
-          <span style={{
-            fontSize: '0.7rem',
-            fontWeight: '900',
-            padding: '0.2rem 0.55rem',
-            borderRadius: '4px',
-            backgroundColor: isDocx ? '#0078d4' : '#d92d20',
-            color: '#ffffff',
-            letterSpacing: '0.5px'
-          }}>
-            {isDocx ? 'DOCX' : 'PDF'}
-          </span>
-        </a>
-      );
-    })}
-  </div>
-);
+            <span style={{
+              fontSize: '0.7rem',
+              fontWeight: '900',
+              padding: '0.2rem 0.55rem',
+              borderRadius: '4px',
+              backgroundColor: isDocx ? '#0078d4' : '#d92d20',
+              color: '#ffffff',
+              letterSpacing: '0.5px'
+            }}>
+              {isDocx ? 'DOCX' : 'PDF'}
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  );
+
   const inputStyle = {
     width: '100%',
     padding: '0.65rem 0.8rem',
@@ -245,117 +219,45 @@ const renderDownloadItems = (items) => (
   return (
     <div style={{ backgroundColor: 'var(--color-white)', paddingBottom: '0' }}>
 
-      {/* 🏆 1. CERTIFICATION PATHWAYS OVERVIEW */}
-      <section style={{ backgroundColor: '#ffffff', padding: '3rem 2rem 4rem 2rem' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          
-          <h2 style={{
-            fontSize: '1.8rem',
-            color: '#2b704a',
-            fontWeight: '800',
-            marginBottom: '0.5rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-            textAlign: 'center'
+{/* 🖼️ 1. HERO BANNER (CLEAN NATURAL IMAGE - NO GREEN TINT) */}
+      <section style={{ 
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.70)), url(${heroBgImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        color: '#ffffff', 
+        padding: '5.5rem 2rem', 
+        textAlign: 'center',
+        borderBottom: '4px solid var(--color-yellow)'
+      }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <h1 style={{ 
+            fontSize: '2.4rem', 
+            fontWeight: '800', 
+            textTransform: 'uppercase', 
+            letterSpacing: '1px', 
+            marginBottom: '1rem',
+            color: '#ffffff',
+            textShadow: '0 2px 6px rgba(0,0,0,0.6)'
           }}>
-            Get Accredited & Internationally Certified
-          </h2>
-          <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', margin: '0 auto 3.5rem auto' }}></div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
-            gap: '2rem',
-            alignItems: 'stretch'
+            Get Certified & Accredited
+          </h1>
+          <p style={{ 
+            fontSize: '1.1rem', 
+            color: '#ffffff', 
+            lineHeight: '1.6', 
+            margin: '0 auto', 
+            maxWidth: '820px',
+            fontWeight: '500',
+            textShadow: '0 1px 4px rgba(0,0,0,0.5)'
           }}>
-            {certificationPathways.map((item, idx) => (
-              <div 
-                key={idx}
-                style={{
-                  backgroundColor: '#ffffff',
-                  border: '1px solid #eaecf0',
-                  borderTop: '4px solid #2b704a',
-                  borderRadius: '8px',
-                  padding: '2.5rem 2rem',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justify: 'space-between',
-                  ...cardHoverStyle
-                }}
-                onMouseEnter={handleCardMouseEnter}
-                onMouseLeave={handleCardMouseLeave}
-              >
-                <div>
-                  <div style={{ height: '85px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
-                    <img 
-                      src={item.badge} 
-                      alt={item.badgeAlt} 
-                      style={{ 
-                        maxHeight: '80px', 
-                        maxWidth: '200px', 
-                        width: 'auto', 
-                        objectFit: 'contain',
-                        transform: idx === 2 ? 'scale(1.2)' : 'none'
-                      }} 
-                    />
-                  </div>
-
-                  <h3 style={{ fontSize: '1.15rem', color: '#2b704a', fontWeight: '800', marginBottom: '0.8rem', textTransform: 'uppercase', textAlign: 'center' }}>
-                    {item.title}
-                  </h3>
-
-                  <p style={{ color: '#475467', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.5rem', textAlign: 'center' }}>
-                    {item.desc}
-                  </p>
-
-                  <div style={{ borderTop: '1px solid #f2f4f7', paddingTop: '1rem', marginBottom: '1.5rem' }}>
-                    <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#2b704a', textTransform: 'uppercase', marginBottom: '0.6rem', letterSpacing: '0.5px' }}>
-                      Key Offerings:
-                    </div>
-                    {renderListItems(item.highlights)}
-                  </div>
-                </div>
-
-                <Link 
-                  to="/contact" 
-                  style={{
-                    display: 'block',
-                    backgroundColor: '#2b704a',
-                    color: '#ffffff',
-                    textAlign: 'center',
-                    padding: '0.75rem',
-                    fontWeight: '700',
-                    fontSize: '0.85rem',
-                    textTransform: 'uppercase',
-                    textDecoration: 'none',
-                    letterSpacing: '0.5px',
-                    borderRadius: '4px',
-                    transition: 'all 0.25s ease',
-                    boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = '#1e5235';
-                    e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = '0 4px 10px rgba(0,0,0,0.15)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = '#2b704a';
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
-                  }}
-                >
-                  Enrol For {item.title.split(" ")[0]}
-                </Link>
-              </div>
-            ))}
-          </div>
-
+            Take the next step in your professional QHSE career with internationally recognized NEBOSH, IOSH, and CQI-IRCA ISO certifications.
+          </p>
         </div>
       </section>
 
       {/* 💳 2. COURSE REGISTRATION PROCESS */}
-      <section style={{ backgroundColor: '#f9fafb', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
+      <section style={{ backgroundColor: '#ffffff', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 style={{
             fontSize: '1.8rem',
@@ -372,7 +274,7 @@ const renderDownloadItems = (items) => (
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '2rem',
             alignItems: 'stretch'
           }}>
@@ -474,7 +376,7 @@ const renderDownloadItems = (items) => (
       </section>
 
       {/* 📄 3. COURSE REGISTRATION CONFIRMATION */}
-      <section style={{ backgroundColor: '#ffffff', padding: '5rem 2rem', borderTop: '1px solid #f2f4f7' }}>
+      <section style={{ backgroundColor: '#f9fafb', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
           <h2 style={{
@@ -553,14 +455,14 @@ const renderDownloadItems = (items) => (
                 
                 <div style={{ marginBottom: '1.5rem' }}>
                   <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#344054', marginBottom: '0.6rem' }}>
-    WhatsApp:
-  </div>
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.92rem' }}>
-    <a href="https://wa.me/447878121965" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 787 812 1965</a>
-    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 731 125 4738</a>
-    <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 703 016 2747</a>
-    <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 803 309 7942</a>
-  </div>
+                    WhatsApp:
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.92rem' }}>
+                    <a href="https://wa.me/447878121965" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 787 812 1965</a>
+                    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 731 125 4738</a>
+                    <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 703 016 2747</a>
+                    <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 803 309 7942</a>
+                  </div>
                 </div>
               </div>
 
@@ -588,8 +490,8 @@ const renderDownloadItems = (items) => (
         </div>
       </section>
 
-      {/* 🚀 4. OUR 3 STEPS PROCESS */}
-      <section style={{ backgroundColor: '#f9fafb', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
+      {/* 🚀 4. OUR 3 STEPS PROCESS (FIXED NUMBERS & LOCKED BORDERS) */}
+      <section style={{ backgroundColor: '#ffffff', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
           <h2 style={{
@@ -607,7 +509,7 @@ const renderDownloadItems = (items) => (
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '2rem',
             alignItems: 'stretch'
           }}>
@@ -621,20 +523,22 @@ const renderDownloadItems = (items) => (
                 style={{
                   backgroundColor: '#ffffff',
                   border: '1px solid #eaecf0',
-                  borderTop: '4px solid #2b704a',
+                  borderTop: '4px solid #2b704a', /* Permanent top green accent on ALL cards */
                   borderRadius: '8px',
                   padding: '2.5rem 2rem',
                   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1rem',
+                  boxSizing: 'border-box',
                   ...cardHoverStyle
                 }}
                 onMouseEnter={handleCardMouseEnter}
                 onMouseLeave={handleCardMouseLeave}
               >
+                {/* Clean, Dead-Centered Flex Circle for Numbering */}
                 <div style={{
-                  display: 'inline-flex',
+                  display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   width: '42px',
@@ -643,10 +547,13 @@ const renderDownloadItems = (items) => (
                   backgroundColor: '#2b704a',
                   color: '#ffffff',
                   fontWeight: '800',
-                  fontSize: '1.1rem'
+                  fontSize: '1.1rem',
+                  lineHeight: '1',
+                  flexShrink: 0
                 }}>
                   {step.num}
                 </div>
+
                 <h3 style={{ fontSize: '1.15rem', color: '#2b704a', fontWeight: '800', margin: 0, textTransform: 'uppercase' }}>
                   {step.title}
                 </h3>
@@ -661,7 +568,7 @@ const renderDownloadItems = (items) => (
       </section>
 
       {/* 📩 5. REQUEST FOR FULL DETAILS FORM SECTION */}
-      <section style={{ backgroundColor: '#ffffff', padding: '5rem 2rem', borderTop: '1px solid #f2f4f7' }}>
+      <section style={{ backgroundColor: '#f9fafb', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
           <h2 style={{
@@ -972,7 +879,7 @@ const renderDownloadItems = (items) => (
       </section>
 
       {/* 🌟 6. REASONS TO ENROL IN OUR COURSES */}
-      <section style={{ backgroundColor: '#f9fafb', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
+      <section style={{ backgroundColor: '#ffffff', padding: '5rem 2rem', borderTop: '1px solid #f2f4f7' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
           <h2 style={{
@@ -990,7 +897,7 @@ const renderDownloadItems = (items) => (
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '2rem',
             alignItems: 'stretch'
           }}>
@@ -1028,7 +935,7 @@ const renderDownloadItems = (items) => (
         </div>
       </section>
 
-{/* 🤝 7. MOVING CLIENT LOGO CAROUSEL LOOP */}
+      {/* 🤝 7. MOVING CLIENT LOGO CAROUSEL LOOP */}
       <section style={{ padding: '5rem 0', textAlign: 'center', backgroundColor: 'var(--color-light-gray)', overflow: 'hidden' }}>
         <div style={{ fontSize: '0.9rem', fontWeight: '800', color: '#475467', letterSpacing: '1px', marginBottom: '3rem', textTransform: 'uppercase' }}>
           ACCREDITATIONS, AFFILIATIONS AND ASSOCIATIONS

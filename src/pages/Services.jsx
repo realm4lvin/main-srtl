@@ -362,6 +362,43 @@ const renderDownloadItems = (items) => (
   return (
     <div style={{ backgroundColor: 'var(--color-white)', paddingBottom: '0' }}>
 
+      {/* 🖼️ HERO BANNER SECTION */}
+      <section style={{ 
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.60)), url("https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1600&q=80")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        color: '#ffffff', 
+        padding: '5.5rem 2rem', 
+        textAlign: 'center',
+        borderBottom: '4px solid var(--color-yellow)'
+      }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <h1 style={{ 
+            fontSize: '2.4rem', 
+            fontWeight: '800', 
+            textTransform: 'uppercase', 
+            letterSpacing: '1px', 
+            marginBottom: '1rem',
+            color: '#ffffff',
+            textShadow: '0 2px 8px rgba(0,0,0,0.7)'
+          }}>
+            Our Courses & QHSE Services
+          </h1>
+          <p style={{ 
+            fontSize: '1.1rem', 
+            color: '#ffffff', 
+            lineHeight: '1.6', 
+            margin: '0 auto', 
+            maxWidth: '820px',
+            fontWeight: '500',
+            textShadow: '0 1px 5px rgba(0,0,0,0.6)'
+          }}>
+            Explore our comprehensive suite of accredited international training, specialized safety competency programs, ISO auditing, and environmental studies.
+          </p>
+        </div>
+      </section>
+      
       {/* 🌍 1. OUR INTERNATIONAL COURSES SECTION */}
       <section style={{ backgroundColor: '#ffffff', padding: '3rem 2rem 4rem 2rem' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>

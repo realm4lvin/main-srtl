@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 // Import local brand assets
-import whoWeAreImg from '../assets/brand/who-we-are.png';
-import companyLogo from '../assets/brand/safeguard-logo.png';
+import whoWeAreImg from '../assets/brand/who-we-are.webp';
+import companyLogo from "../assets/brand/safeguard-logo.webp";
 import neboshBadge from '../assets/brand/nebosh-silver-partner.png';
 import ioshBadge from '../assets/brand/iosh-logo.png';
 import cqiBadge from '../assets/brand/cqi-irca-logo.png';
@@ -84,33 +84,6 @@ const About = () => {
     { name: "UPS", logo: getLogo("ups") },
     { name: "Weafri", logo: getLogo("weafri") },
     { name: "Weltec", logo: getLogo("weltek") }
-  ];
-
-  // 📝 17 Additional Companies (Mantrac & MTN included)
-  const additionalCol1 = [
-    "Ace Footwear Industries",
-    "Centre for Advanced Social Science",
-    "Central Horizon Gas Company",
-    "Elektrint",
-    "Exterran Corporation",
-    "Global Energy Group"
-  ];
-
-  const additionalCol2 = [
-    "Hanover",
-    "Jubaili Bros Engineering Limited",
-    "Lafarge Holcim Group",
-    "Mantrac Group",
-    "MTN",
-    "Royal Salt"
-  ];
-
-  const additionalCol3 = [
-    "Saipem",
-    "SAP Drilling Oil and Gas Limited",
-    "Seric Impianti International Limited",
-    "Tenaris Group",
-    "Titan Tubulars"
   ];
 
   const coreValues = [
@@ -1137,8 +1110,8 @@ const About = () => {
         </div>
       </section>
 
-{/* 🏢 11. CORPORATE CLIENTS SECTION (MOVING MARQUEE + 3-COLUMN CARD) */}
-      <section style={{ padding: '5rem 0', backgroundColor: '#ffffff', textAlign: 'center', overflow: 'hidden' }}>
+{/* 🏢 11. CORPORATE CLIENTS SECTION (MOVING MARQUEE ONLY) */}
+      <section style={{ padding: '5rem 0 2rem 0', backgroundColor: '#ffffff', textAlign: 'center', overflow: 'hidden' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
           <h2 style={{ fontSize: '1.8rem', color: '#2b704a', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             SOME ORGANIZATIONS THAT HAVE USED OUR SERVICES
@@ -1146,7 +1119,7 @@ const About = () => {
           <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', margin: '0 auto 3rem auto' }}></div>
         </div>
 
-        {/* 1. Moving Logos Marquee */}
+        {/* Moving Logos Marquee */}
         <div className="marquee-container">
           <div className="marquee-content">
             {corporateClients.map((client, idx) => (
@@ -1218,36 +1191,6 @@ const About = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* 2. Additional Corporate Clients Card (3 Columns) */}
-        <div style={{ maxWidth: '1200px', margin: '3.5rem auto 0 auto', padding: '0 2rem' }}>
-          <div style={{
-            backgroundColor: '#ffffff',
-            border: '1.5px solid #2b704a',
-            borderRadius: '8px',
-            padding: '2.5rem',
-            textAlign: 'left',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.03)'
-          }}>
-            <h3 style={{ 
-              fontSize: '1.1rem', 
-              color: '#2b704a', 
-              fontWeight: '800', 
-              borderBottom: '2px solid #2b704a', 
-              paddingBottom: '0.5rem', 
-              marginBottom: '1.8rem', 
-              textTransform: 'uppercase' 
-            }}>
-              ADDITIONAL TRUSTED CORPORATE PARTNERS
-            </h3>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '2rem' }}>
-              <div>{renderNumberedList(additionalCol1, 1)}</div>
-              <div>{renderNumberedList(additionalCol2, 7)}</div>
-              <div>{renderNumberedList(additionalCol3, 13)}</div>
-            </div>
           </div>
         </div>
       </section>

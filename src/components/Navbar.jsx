@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../assets/brand/safeguard-logo.png';
+import logo from '../assets/brand/safeguard-logo.webp';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

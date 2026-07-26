@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Import local brand & client assets
-import heroWorkers from '../assets/brand/hero-workers.png'; 
-import whoWeAreImg from '../assets/brand/who-we-are.png'; 
+import heroWorkers from '../assets/brand/hero-workers.webp'; 
+import whoWeAreImg from '../assets/brand/who-we-are.webp'; 
 import neboshBadge from '../assets/brand/nebosh-silver-partner.png';
 import ioshBadge from '../assets/brand/iosh-logo.png';
 import cqiBadge from '../assets/brand/cqi-irca-logo.png';
@@ -371,34 +371,40 @@ const renderDownloadItems = (items) => (
   return (
     <div style={{ backgroundColor: 'var(--color-white)' }}>
       
-      {/* HERO SECTION */}
+      {/* 🚀 HERO SECTION (BOTH WORKERS EQUALLY VISIBLE) */}
       <section style={{
-        backgroundImage: `linear-gradient(to right, rgba(16, 24, 40, 0.92) 0%, rgba(16, 24, 40, 0.75) 55%, rgba(16, 24, 40, 0.15) 100%), url(${heroWorkers})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(16, 24, 40, 0.75) 0%, rgba(16, 24, 40, 0.65) 100%), url(${heroWorkers})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center right',
+        backgroundPosition: 'center 20%', /* 👈 Perfectly centers both male & female workers in frame */
         backgroundRepeat: 'no-repeat',
         color: '#ffffff',
-        padding: '5rem 2rem',
+        padding: '4rem 1.25rem',
         minHeight: '75vh',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        boxSizing: 'border-box'
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
-          <div style={{ maxWidth: '650px' }}>
+          <div style={{ maxWidth: '620px' }}>
             <h1 style={{ 
-              fontSize: '2.4rem', 
+              fontSize: 'clamp(1.5rem, 4.5vw, 2.4rem)', 
               lineHeight: '1.3', 
               fontWeight: '800', 
-              marginBottom: '1.5rem',
-              color: '#ffffff'
+              marginBottom: '1.2rem',
+              color: '#ffffff',
+              textShadow: '0 2px 8px rgba(0,0,0,0.8)'
             }}>
-              A Globally Respected and Recognized <span style={{ color: 'var(--color-yellow)' }}>NEBOSH, IOSH AND CQI-IRCA</span> Training Center
+              A Globally Respected and Recognized{' '}
+              <span style={{ color: 'var(--color-yellow)' }}>
+                NEBOSH, IOSH AND CQI-IRCA
+              </span>{' '}
+              Training Center
             </h1>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '2.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', marginBottom: '2rem' }}>
               {bulletPoints.map((text, idx) => (
-                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem' }}>
-                  <span style={{ color: 'var(--color-yellow)', fontWeight: 'bold', fontSize: '1.1rem' }}>✓</span>
+                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.95rem', textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
+                  <span style={{ color: 'var(--color-yellow)', fontWeight: 'bold', fontSize: '1.1rem', flexShrink: 0 }}>✓</span>
                   <span>{text}</span>
                 </div>
               ))}
@@ -411,23 +417,14 @@ const renderDownloadItems = (items) => (
                 display: 'inline-block',
                 backgroundColor: 'var(--color-yellow)',
                 color: 'var(--color-dark)',
-                padding: '0.9rem 2.5rem',
+                padding: '0.85rem 2.2rem',
                 fontWeight: '800',
                 borderRadius: '6px',
                 textTransform: 'uppercase',
                 textDecoration: 'none',
                 letterSpacing: '0.5px',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                fontSize: '0.9rem',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+                boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+                fontSize: '0.88rem'
               }}
             >
               Get Certified
@@ -435,144 +432,32 @@ const renderDownloadItems = (items) => (
           </div>
         </div>
       </section>
-      
-      {/* 🤝 2. ACCREDITATION PARTNER BADGES ROW */}
-      <section style={{
-        backgroundColor: 'var(--color-white)',
-        padding: '4.5rem 2rem',
-        borderBottom: '1px solid #eaecf0',
-        marginTop: '2rem'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '3rem',
-          alignItems: 'stretch'
-        }}>
-          
-          {/* 1. NEBOSH Badge */}
-          <div 
-            style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center', 
-              justify: 'space-between', 
-              height: '210px',
-              transition: 'transform 0.3s ease', 
-              cursor: 'pointer' 
-            }} 
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'} 
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-          >
-            <div style={{ height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-              <img 
-                src={neboshBadge} 
-                alt="NEBOSH Logo" 
-                loading="lazy" 
-                style={{ 
-                  maxHeight: '130px', 
-                  maxWidth: '100%', 
-                  width: 'auto', 
-                  objectFit: 'contain',
-                  transform: 'scale(1.35)',
-                  transformOrigin: 'center'
-                }} 
-              />
-            </div>
-            <span style={{ fontWeight: '800', fontSize: '0.95rem', color: 'var(--color-dark)', letterSpacing: '0.5px', textAlign: 'center' }}>
-              NEBOSH TRAINING CENTER
-            </span>
-          </div>
-
-          {/* 2. IOSH Badge */}
-          <div 
-            style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center', 
-              justify: 'space-between', 
-              height: '210px',
-              transition: 'transform 0.3s ease', 
-              cursor: 'pointer' 
-            }} 
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'} 
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-          >
-            <div style={{ height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-              <img 
-                src={ioshBadge} 
-                alt="IOSH Logo" 
-                loading="lazy" 
-                style={{ 
-                  maxHeight: '130px', 
-                  maxWidth: '100%', 
-                  width: 'auto', 
-                  objectFit: 'contain'
-                }} 
-              />
-            </div>
-            <span style={{ fontWeight: '800', fontSize: '0.95rem', color: 'var(--color-dark)', letterSpacing: '0.5px', textAlign: 'center' }}>
-              IOSH TRAINING CENTER
-            </span>
-          </div>
-
-          {/* 3. CQI-IRCA Badge (SLIGHTLY BOOSTED TO MATCH WEIGHT) */}
-          <div 
-            style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center', 
-              justify: 'space-between', 
-              height: '210px',
-              transition: 'transform 0.3s ease', 
-              cursor: 'pointer' 
-            }} 
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'} 
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-          >
-            <div style={{ height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-              <img 
-                src={cqiBadge} 
-                alt="CQI-IRCA Logo" 
-                loading="lazy" 
-                style={{ 
-                  maxHeight: '130px', 
-                  maxWidth: '100%', 
-                  width: 'auto', 
-                  objectFit: 'contain',
-                  transform: 'scale(1.60)', /* 👈 Boosted slightly from 1.45 to 1.60 */
-                  transformOrigin: 'center'
-                }} 
-              />
-            </div>
-            <span style={{ fontWeight: '800', fontSize: '0.95rem', color: 'var(--color-dark)', letterSpacing: '0.5px', textAlign: 'center' }}>
-              CQI-IRCA ISO TRAINING CENTER
-            </span>
-          </div>
-
-        </div>
-      </section>
 
       {/* WHO WE ARE SECTION */}
-      <section style={{ maxWidth: '1200px', margin: '5rem auto 4rem auto', padding: '0 2rem', display: 'grid', gridTemplateColumns: '0.8fr 1.2fr', gap: '4rem', alignItems: 'center' }}>
-        <div>
-          <div style={{ width: '100%', height: '380px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', border: '1px solid #eaecf0' }}>
-            <img src={whoWeAreImg} alt="Safeguard Facilities Hub" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.00)'} />
-          </div>
-        </div>
+<section style={{ maxWidth: '1200px', margin: '5rem auto 4rem auto', padding: '0 2rem', display: 'grid', gridTemplateColumns: '0.8fr 1.2fr', gap: '4rem', alignItems: 'center' }}>
+  <div>
+    <div style={{ width: '100%', height: '380px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', border: '1px solid #eaecf0' }}>
+      <img 
+        src={whoWeAreImg} 
+        alt="Safeguard Facilities Hub" 
+        loading="lazy" /* 👈 THIS IS IT! Defers download until the user scrolls down */
+        style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease', cursor: 'pointer' }} 
+        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} 
+        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.00)'} 
+      />
+    </div>
+  </div>
 
-        <div>
-          <h2 style={{ fontSize: '1.8rem', color: 'var(--color-green)', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-            Who We Are
-          </h2>
-          <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', marginBottom: '1.5rem' }}></div>
-          <p style={{ color: '#344054', fontSize: '1.05rem', lineHeight: '1.8', textAlign: 'justify' }}>
-            Safeguard Safety and Management Center Limited is one of the world's leading and largest NEBOSH Learning Partners, offering 20 internationally accredited NEBOSH qualifications. As a respected premier provider of NEBOSH, IOSH and CQI-IRCA certified training worldwide, Safeguard offers world-class and innovative virtual classrooms globally. Our learning solutions and digital platform empower professionals and organizations worldwide to achieve excellence in Quality, Health, Safety and Environment (QHSE). Safeguard also offers comprehensive QHSE support services, including QHSE studies, facility management, manpower solutions and audits, and specialized QHSE resource support. We also supply, install, commission, maintain, and service a wide range of specialized QHSE equipment and systems.
-          </p>
-        </div>
-      </section>
+  <div>
+    <h2 style={{ fontSize: '1.8rem', color: 'var(--color-green)', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+      Who We Are
+    </h2>
+    <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', marginBottom: '1.5rem' }}></div>
+    <p style={{ color: '#344054', fontSize: '1.05rem', lineHeight: '1.8', textAlign: 'justify' }}>
+      Safeguard Safety and Management Center Limited is one of the world's leading and largest NEBOSH Learning Partners, offering 20 internationally accredited NEBOSH qualifications. As a respected premier provider of NEBOSH, IOSH and CQI-IRCA certified training worldwide, Safeguard offers world-class and innovative virtual classrooms globally. Our learning solutions and digital platform empower professionals and organizations worldwide to achieve excellence in Quality, Health, Safety and Environment (QHSE). Safeguard also offers comprehensive QHSE support services, including QHSE studies, facility management, manpower solutions and audits, and specialized QHSE resource support. We also supply, install, commission, maintain, and service a wide range of specialized QHSE equipment and systems.
+    </p>
+  </div>
+</section>
 
       {/* CORE METRICS & STATISTICS */}
       <section style={{ backgroundColor: 'var(--color-light-gray)', padding: '3.5rem 2rem', borderTop: '1px solid #eaecf0', borderBottom: '1px solid #eaecf0', marginBottom: '4rem' }}>
