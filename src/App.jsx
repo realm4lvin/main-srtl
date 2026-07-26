@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import PageTransitionLoader from './components/PageTransitionLoader';
+import WhatsAppButton from './components/WhatsAppButton';
 
 // Page Views
 import Home from './pages/Home';
@@ -22,7 +23,9 @@ function App() {
       <PageTransitionLoader />
       <TopBar />
       <Navbar />
-      
+      <div>
+        <WhatsAppButton />
+      </div>
 
       <main className="page-transition">
         <Routes>
