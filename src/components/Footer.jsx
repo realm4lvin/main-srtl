@@ -34,8 +34,8 @@ const Footer = () => {
   </div>
   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.88rem', fontWeight: '600' }}>
     <a href="https://wa.me/447878121965" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +44 787 812 1965</a>
-    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +44 731 125 4738</a>
     <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +234 703 016 2747</a>
+    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +44 731 125 4738</a>
     <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +234 803 309 7942</a>
   </div>
             </div>
@@ -46,13 +46,13 @@ const Footer = () => {
                 CONNECT WITH US
               </div>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <a href="https://facebook.com" target="_blank" rel="noreferrer" style={{ color: '#ffffff', transition: 'color 0.2s ease' }}>
+                <a href="https://www.facebook.com/share/1GcFUzeXPK/" target="_blank" rel="noreferrer" aria-label="Facebook" style={{ color: '#ffffff', transition: 'color 0.2s ease' }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noreferrer" style={{ color: '#ffffff', transition: 'color 0.2s ease' }}>
+                <a href="https://www.instagram.com/safeguard_safety" target="_blank" rel="noreferrer" aria-label="Instagram" style={{ color: '#ffffff', transition: 'color 0.2s ease' }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" style={{ color: '#ffffff', transition: 'color 0.2s ease' }}>
+                <a href="https://www.linkedin.com/company/safeguard-safety-and-management-center/" target="_blank" rel="noreferrer" aria-label="LinkedIn" style={{ color: '#ffffff', transition: 'color 0.2s ease' }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                 </a>
               </div>
