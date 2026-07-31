@@ -1,10 +1,5 @@
 import { useState } from 'react';
 import Select from 'react-select';
-import PhoneInputPkg from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
-
-// Safe component extractor
-const PhoneInput = PhoneInputPkg.default || PhoneInputPkg;
 
 // Full Alphabetical List of ISO Countries
 const countryOptions = [
@@ -250,10 +245,171 @@ const allCourseOptions = [
   'Workplace Hazard Management'
 ].map(item => ({ value: item, label: item }));
 
+// Comprehensive Global Dial Codes List
+const phoneDialCodes = [
+  { value: '+234', label: '+234', code: 'ng' },
+  { value: '+1', label: '+1', code: 'us' },
+  { value: '+44', label: '+44', code: 'gb' },
+  { value: '+233', label: '+233', code: 'gh' },
+  { value: '+254', label: '+254', code: 'ke' },
+  { value: '+27', label: '+27', code: 'za' },
+  { value: '+971', label: '+971', code: 'ae' },
+  { value: '+91', label: '+91', code: 'in' },
+  { value: '+64', label: '+64', code: 'nz' },
+  { value: '+61', label: '+61', code: 'au' },
+  { value: '+49', label: '+49', code: 'de' },
+  { value: '+33', label: '+33', code: 'fr' },
+  { value: '+86', label: '+86', code: 'cn' },
+  { value: '+81', label: '+81', code: 'jp' },
+  { value: '+212', label: '+212', code: 'ma' },
+  { value: '+20', label: '+20', code: 'eg' },
+  { value: '+93', label: '+93', code: 'af' },
+  { value: '+355', label: '+355', code: 'al' },
+  { value: '+213', label: '+213', code: 'dz' },
+  { value: '+244', label: '+244', code: 'ao' },
+  { value: '+54', label: '+54', code: 'ar' },
+  { value: '+374', label: '+374', code: 'am' },
+  { value: '+43', label: '+43', code: 'at' },
+  { value: '+994', label: '+994', code: 'az' },
+  { value: '+973', label: '+973', code: 'bh' },
+  { value: '+880', label: '+880', code: 'bd' },
+  { value: '+32', label: '+32', code: 'be' },
+  { value: '+229', label: '+229', code: 'bj' },
+  { value: '+591', label: '+591', code: 'bo' },
+  { value: '+267', label: '+267', code: 'bw' },
+  { value: '+55', label: '+55', code: 'br' },
+  { value: '+359', label: '+359', code: 'bg' },
+  { value: '+226', label: '+226', code: 'bf' },
+  { value: '+257', label: '+257', code: 'bi' },
+  { value: '+855', label: '+855', code: 'kh' },
+  { value: '+237', label: '+237', code: 'cm' },
+  { value: '+238', label: '+238', code: 'cv' },
+  { value: '+236', label: '+236', code: 'cf' },
+  { value: '+235', label: '+235', code: 'td' },
+  { value: '+56', label: '+56', code: 'cl' },
+  { value: '+57', label: '+57', code: 'co' },
+  { value: '+269', label: '+269', code: 'km' },
+  { value: '+242', label: '+242', code: 'cg' },
+  { value: '+506', label: '+506', code: 'cr' },
+  { value: '+385', label: '+385', code: 'hr' },
+  { value: '+53', label: '+53', code: 'cu' },
+  { value: '+357', label: '+357', code: 'cy' },
+  { value: '+420', label: '+420', code: 'cz' },
+  { value: '+45', label: '+45', code: 'dk' },
+  { value: '+253', label: '+253', code: 'dj' },
+  { value: '+593', label: '+593', code: 'ec' },
+  { value: '+503', label: '+503', code: 'sv' },
+  { value: '+240', label: '+240', code: 'gq' },
+  { value: '+291', label: '+291', code: 'er' },
+  { value: '+372', label: '+372', code: 'ee' },
+  { value: '+251', label: '+251', code: 'et' },
+  { value: '+679', label: '+679', code: 'fj' },
+  { value: '+358', label: '+358', code: 'fi' },
+  { value: '+241', label: '+241', code: 'ga' },
+  { value: '+220', label: '+220', code: 'gm' },
+  { value: '+995', label: '+995', code: 'ge' },
+  { value: '+30', label: '+30', code: 'gr' },
+  { value: '+502', label: '+502', code: 'gt' },
+  { value: '+224', label: '+224', code: 'gn' },
+  { value: '+509', label: '+509', code: 'ht' },
+  { value: '+504', label: '+504', code: 'hn' },
+  { value: '+36', label: '+36', code: 'hu' },
+  { value: '+354', label: '+354', code: 'is' },
+  { value: '+62', label: '+62', code: 'id' },
+  { value: '+98', label: '+98', code: 'ir' },
+  { value: '+964', label: '+964', code: 'iq' },
+  { value: '+353', label: '+353', code: 'ie' },
+  { value: '+972', label: '+972', code: 'il' },
+  { value: '+39', label: '+39', code: 'it' },
+  { value: '+81', label: '+81', code: 'jp' },
+  { value: '+962', label: '+962', code: 'jo' },
+  { value: '+7', label: '+7', code: 'kz' },
+  { value: '+965', label: '+965', code: 'kw' },
+  { value: '+371', label: '+371', code: 'lv' },
+  { value: '+961', label: '+961', code: 'lb' },
+  { value: '+231', label: '+231', code: 'lr' },
+  { value: '+218', label: '+218', code: 'ly' },
+  { value: '+370', label: '+370', code: 'lt' },
+  { value: '+352', label: '+352', code: 'lu' },
+  { value: '+261', label: '+261', code: 'mg' },
+  { value: '+265', label: '+265', code: 'mw' },
+  { value: '+60', label: '+60', code: 'my' },
+  { value: '+960', label: '+960', code: 'mv' },
+  { value: '+223', label: '+223', code: 'ml' },
+  { value: '+356', label: '+356', code: 'mt' },
+  { value: '+222', label: '+222', code: 'mr' },
+  { value: '+230', label: '+230', code: 'mu' },
+  { value: '+52', label: '+52', code: 'mx' },
+  { value: '+373', label: '+373', code: 'md' },
+  { value: '+377', label: '+377', code: 'mc' },
+  { value: '+976', label: '+976', code: 'mn' },
+  { value: '+382', label: '+382', code: 'me' },
+  { value: '+258', label: '+258', code: 'mz' },
+  { value: '+264', label: '+264', code: 'na' },
+  { value: '+977', label: '+977', code: 'np' },
+  { value: '+31', label: '+31', code: 'nl' },
+  { value: '+505', label: '+505', code: 'ni' },
+  { value: '+227', label: '+227', code: 'ne' },
+  { value: '+47', label: '+47', code: 'no' },
+  { value: '+968', label: '+968', code: 'om' },
+  { value: '+92', label: '+92', code: 'pk' },
+  { value: '+970', label: '+970', code: 'ps' },
+  { value: '+507', label: '+507', code: 'pa' },
+  { value: '+595', label: '+595', code: 'py' },
+  { value: '+51', label: '+51', code: 'pe' },
+  { value: '+63', label: '+63', code: 'ph' },
+  { value: '+48', label: '+48', code: 'pl' },
+  { value: '+351', label: '+351', code: 'pt' },
+  { value: '+974', label: '+974', code: 'qa' },
+  { value: '+40', label: '+40', code: 'ro' },
+  { value: '+250', label: '+250', code: 'rw' },
+  { value: '+966', label: '+966', code: 'sa' },
+  { value: '+221', label: '+221', code: 'sn' },
+  { value: '+381', label: '+381', code: 'rs' },
+  { value: '+232', label: '+232', code: 'sl' },
+  { value: '+65', label: '+65', code: 'sg' },
+  { value: '+421', label: '+421', code: 'sk' },
+  { value: '+386', label: '+386', code: 'si' },
+  { value: '+82', label: '+82', code: 'kr' },
+  { value: '+34', label: '+34', code: 'es' },
+  { value: '+94', label: '+94', code: 'lk' },
+  { value: '+249', label: '+249', code: 'sd' },
+  { value: '+46', label: '+46', code: 'se' },
+  { value: '+41', label: '+41', code: 'ch' },
+  { value: '+255', label: '+255', code: 'tz' },
+  { value: '+66', label: '+66', code: 'th' },
+  { value: '+228', label: '+228', code: 'tg' },
+  { value: '+216', label: '+216', code: 'tn' },
+  { value: '+90', label: '+90', code: 'tr' },
+  { value: '+256', label: '+256', code: 'ug' },
+  { value: '+380', label: '+380', code: 'ua' },
+  { value: '+598', label: '+598', code: 'uy' },
+  { value: '+998', label: '+998', code: 'uz' },
+  { value: '+58', label: '+58', code: 've' },
+  { value: '+84', label: '+84', code: 'vn' },
+  { value: '+967', label: '+967', code: 'ye' },
+  { value: '+260', label: '+260', code: 'zm' },
+  { value: '+263', label: '+263', code: 'zw' }
+];
+
+// Custom option renderer for react-select using FlagCDN images
+const formatOptionLabel = ({ label, code }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <img 
+      src={`https://flagcdn.com/w20/${code}.png`} 
+      width="20" 
+      alt="" 
+      style={{ borderRadius: '2px' }} 
+    />
+    <span>{label}</span>
+  </div>
+);
+
 const RequestFormSection = ({ hasMessage = false }) => {
   const [courseForm, setCourseForm] = useState({
     name: '',
     email: '',
+    phoneCode: phoneDialCodes[0],
     phone: '',
     organisation: '',
     choice: '',
@@ -264,6 +420,7 @@ const RequestFormSection = ({ hasMessage = false }) => {
   const [quoteForm, setQuoteForm] = useState({
     name: '',
     email: '',
+    phoneCode: phoneDialCodes[0],
     phone: '',
     organisation: '',
     service: '',
@@ -275,7 +432,7 @@ const RequestFormSection = ({ hasMessage = false }) => {
     e.preventDefault();
     let body = `Name of Contact Person: ${courseForm.name}\n` +
       `Official email: ${courseForm.email}\n` +
-      `WhatsApp: +${courseForm.phone}\n` +
+      `WhatsApp: ${courseForm.phoneCode.value} ${courseForm.phone}\n` +
       `Name of Organisation: ${courseForm.organisation}\n` +
       `Course or Service of Choice: ${courseForm.choice}\n` +
       `Country of Location: ${courseForm.country}`;
@@ -291,7 +448,7 @@ const RequestFormSection = ({ hasMessage = false }) => {
     e.preventDefault();
     let body = `Name of Contact Person: ${quoteForm.name}\n` +
       `Official email: ${quoteForm.email}\n` +
-      `WhatsApp: +${quoteForm.phone}\n` +
+      `WhatsApp: ${quoteForm.phoneCode.value} ${quoteForm.phone}\n` +
       `Name of Organisation: ${quoteForm.organisation}\n` +
       `Course or Service of Choice: ${quoteForm.service}\n` +
       `Country of Location: ${quoteForm.country}`;
@@ -347,6 +504,27 @@ const RequestFormSection = ({ hasMessage = false }) => {
     })
   };
 
+  const dialCodeSelectStyles = {
+    control: (base, state) => ({
+      ...base,
+      borderRadius: '6px',
+      borderColor: state.isFocused ? '#2b704a' : '#d0d5dd',
+      boxShadow: 'none',
+      backgroundColor: '#f9fafb',
+      fontSize: '0.85rem',
+      minHeight: '40px',
+      '&:hover': { borderColor: '#2b704a' }
+    }),
+    valueContainer: (base) => ({
+      ...base,
+      padding: '0 6px'
+    }),
+    dropdownIndicator: (base) => ({
+      ...base,
+      padding: '2px'
+    })
+  };
+
   return (
     <section style={{ maxWidth: '1200px', margin: '5rem auto 0 auto', padding: '0 2rem' }}>
       <h2 style={{ fontSize: '1.6rem', color: '#2b704a', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px', textAlign: 'center' }}>
@@ -378,27 +556,25 @@ const RequestFormSection = ({ hasMessage = false }) => {
 
               <div>
                 <label style={labelStyle}>WhatsApp Number:</label>
-                <PhoneInput
-                  country={'ng'}
-                  value={courseForm.phone}
-                  onChange={(phone) => setCourseForm({ ...courseForm, phone })}
-                  containerStyle={{ width: '100%' }}
-                  inputStyle={{ 
-                    width: '100%', 
-                    height: '42px', 
-                    fontSize: '0.9rem', 
-                    borderRadius: '6px', 
-                    borderColor: '#d0d5dd'
-                  }}
-                  buttonStyle={{ 
-                    borderRadius: '6px 0 0 6px', 
-                    borderColor: '#d0d5dd',
-                    backgroundColor: '#f9fafb'
-                  }}
-                  dropdownStyle={{ width: '280px' }}
-                  enableSearch={true}
-                  placeholder="801 234 5678"
-                />
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <div style={{ width: '125px' }}>
+                    <Select
+                      options={phoneDialCodes}
+                      value={courseForm.phoneCode}
+                      onChange={(selected) => setCourseForm({ ...courseForm, phoneCode: selected })}
+                      formatOptionLabel={formatOptionLabel}
+                      styles={dialCodeSelectStyles}
+                      isSearchable={true}
+                    />
+                  </div>
+<input
+  type="tel"
+  required
+  value={courseForm.phone}
+  onChange={(e) => setCourseForm({ ...courseForm, phone: e.target.value })}
+  style={{ ...inputStyle, flex: 1 }}
+/>
+                </div>
               </div>
 
               <div>
@@ -471,27 +647,25 @@ const RequestFormSection = ({ hasMessage = false }) => {
 
               <div>
                 <label style={labelStyle}>WhatsApp Number:</label>
-                <PhoneInput
-                  country={'ng'}
-                  value={quoteForm.phone}
-                  onChange={(phone) => setQuoteForm({ ...quoteForm, phone })}
-                  containerStyle={{ width: '100%' }}
-                  inputStyle={{ 
-                    width: '100%', 
-                    height: '42px', 
-                    fontSize: '0.9rem', 
-                    borderRadius: '6px', 
-                    borderColor: '#d0d5dd'
-                  }}
-                  buttonStyle={{ 
-                    borderRadius: '6px 0 0 6px', 
-                    borderColor: '#d0d5dd',
-                    backgroundColor: '#f9fafb'
-                  }}
-                  dropdownStyle={{ width: '280px' }}
-                  enableSearch={true}
-                  placeholder="801 234 5678"
-                />
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <div style={{ width: '125px' }}>
+                    <Select
+                      options={phoneDialCodes}
+                      value={quoteForm.phoneCode}
+                      onChange={(selected) => setQuoteForm({ ...quoteForm, phoneCode: selected })}
+                      formatOptionLabel={formatOptionLabel}
+                      styles={dialCodeSelectStyles}
+                      isSearchable={true}
+                    />
+                  </div>
+                  <input
+  type="tel"
+  required
+  value={courseForm.phone}
+  onChange={(e) => setCourseForm({ ...courseForm, phone: e.target.value })}
+  style={{ ...inputStyle, flex: 1 }}
+/>
+                </div>
               </div>
 
               <div>
