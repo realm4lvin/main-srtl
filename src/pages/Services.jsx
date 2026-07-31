@@ -866,119 +866,114 @@ const renderDownloadItems = (items) => (
       {/* 📩 6. REQUEST FOR FULL DETAILS FORM SECTION */}
 <RequestFormSection hasMessage={false} />
 
-      {/* 🌟 7. REASONS TO ENROL IN OUR COURSES */}
-      <section style={{ backgroundColor: '#ffffff', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
+      {/* REASONS TO ENROL IN OUR COURSES */}
+      <section style={{ backgroundColor: '#f9fafb', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          
-          <h2 style={{
-            fontSize: '1.6rem',
-            color: '#2b704a',
-            fontWeight: '800',
-            marginBottom: '0.5rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-            textAlign: 'center'
-          }}>
+          <h2 style={{ fontSize: '1.6rem', color: '#2b704a', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px', textAlign: 'center' }}>
             Reasons To Enrol In Our NEBOSH, IOSH And CQI-IRCA Courses
           </h2>
           <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', margin: '0 auto 3.5rem auto' }}></div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
-            gap: '2rem',
-            alignItems: 'stretch'
-          }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '2rem', alignItems: 'stretch' }}>
             {enrolmentReasons.map((reason, idx) => (
-              <div 
-                key={idx} 
-                style={{
-                  backgroundColor: '#ffffff',
-                  border: '1px solid #eaecf0',
-                  borderLeft: '4px solid #2b704a',
-                  borderRadius: '8px',
-                  padding: '1.8rem',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.6rem',
-                  ...cardHoverStyle
-                }}
-                onMouseEnter={handleCardMouseEnter}
-                onMouseLeave={handleCardMouseLeave}
-              >
+              <div key={idx} style={{ backgroundColor: '#ffffff', border: '1px solid #eaecf0', borderLeft: '4px solid #2b704a', borderRadius: '8px', padding: '1.8rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', display: 'flex', flexDirection: 'column', gap: '0.6rem', ...cardHoverStyle }} onMouseEnter={handleCardMouseEnter} onMouseLeave={handleCardMouseLeave}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <span style={{ color: 'var(--color-yellow)', backgroundColor: '#2b704a', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.85rem' }}>✓</span>
-                  <h3 style={{ fontSize: '1.05rem', color: '#2b704a', fontWeight: '800', margin: 0 }}>
-                    {reason.title}
-                  </h3>
+                  <h3 style={{ fontSize: '1.05rem', color: '#2b704a', fontWeight: '800', margin: 0 }}>{reason.title}</h3>
                 </div>
-                <p style={{ color: '#475467', fontSize: '0.9rem', lineHeight: '1.6', margin: 0 }}>
-                  {reason.desc}
-                </p>
+                <p style={{ color: '#475467', fontSize: '0.9rem', lineHeight: '1.6', margin: 0 }}>{reason.desc}</p>
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
 {/* 🤝 7. MOVING CLIENT LOGO CAROUSEL LOOP */}
-      <section style={{ padding: '5rem 0', textAlign: 'center', backgroundColor: 'var(--color-light-gray)', overflow: 'hidden' }}>
-        <div style={{ fontSize: '0.9rem', fontWeight: '800', color: '#475467', letterSpacing: '1px', marginBottom: '3rem', textTransform: 'uppercase' }}>
-          ACCREDITATIONS, AFFILIATIONS AND ASSOCIATIONS
-        </div>
-        <div className="marquee-container">
-          <div className="marquee-content">
-            {clientLogos.map((item, idx) => (
-              <div 
-                key={`loop1-${idx}`} 
-                className="marquee-item" 
-                style={{ 
-                  margin: '0 3.5rem', 
-                  transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
-                  cursor: 'pointer' 
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                }}
-              >
-                <div style={{ height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={item.logo} alt={item.name} style={{ maxHeight: '95px', maxWidth: '240px', width: 'auto', objectFit: 'contain', transform: item.scale, transformOrigin: 'center', transition: 'transform 0.3s ease' }} />
-                </div>
-                <span style={{ fontWeight: '700', fontSize: '0.9rem', color: '#344054', marginTop: '0.5rem', display: 'block' }}>{item.name}</span>
-              </div>
-            ))}
-          </div>
-          <div className="marquee-content" aria-hidden="true">
-            {clientLogos.map((item, idx) => (
-              <div 
-                key={`loop2-${idx}`} 
-                className="marquee-item" 
-                style={{ 
-                  margin: '0 3.5rem', 
-                  transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
-                  cursor: 'pointer' 
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                }}
-              >
-                <div style={{ height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={item.logo} alt={item.name} style={{ maxHeight: '95px', maxWidth: '240px', width: 'auto', objectFit: 'contain', transform: item.scale, transformOrigin: 'center', transition: 'transform 0.3s ease' }} />
-                </div>
-                <span style={{ fontWeight: '700', fontSize: '0.9rem', color: '#344054', marginTop: '0.5rem', display: 'block' }}>{item.name}</span>
-              </div>
-            ))}
+<section style={{ padding: '2.5rem 0', textAlign: 'center', backgroundColor: 'var(--color-light-gray)', overflow: 'hidden' }}>
+  <div style={{ fontSize: '0.85rem', fontWeight: '800', color: '#475467', letterSpacing: '1px', marginBottom: '2rem', textTransform: 'uppercase' }}>
+    ACCREDITATIONS, AFFILIATIONS AND ASSOCIATIONS
+  </div>
+  
+  <div className="marquee-container" style={{ padding: '12px 0' }}>
+    <div className="marquee-content">
+      {clientLogos.map((item, idx) => (
+        <div 
+          key={`loop1-${idx}`} 
+          className="marquee-item" 
+          style={{ 
+            margin: '0 2.5rem', 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+            cursor: 'pointer' 
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-5px) scale(1.08)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+          }}
+        >
+          <div style={{ height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img 
+              src={item.logo} 
+              alt={item.name} 
+              style={{ 
+                maxHeight: '75px', 
+                maxWidth: '200px', 
+                width: 'auto', 
+                objectFit: 'contain', 
+                transform: item.scale, 
+                transformOrigin: 'center', 
+                transition: 'transform 0.3s ease' 
+              }} 
+            />
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+
+    <div className="marquee-content" aria-hidden="true">
+      {clientLogos.map((item, idx) => (
+        <div 
+          key={`loop2-${idx}`} 
+          className="marquee-item" 
+          style={{ 
+            margin: '0 2.5rem', 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+            cursor: 'pointer' 
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-5px) scale(1.08)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+          }}
+        >
+          <div style={{ height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img 
+              src={item.logo} 
+              alt={item.name} 
+              style={{ 
+                maxHeight: '75px', 
+                maxWidth: '200px', 
+                width: 'auto', 
+                objectFit: 'contain', 
+                transform: item.scale, 
+                transformOrigin: 'center', 
+                transition: 'transform 0.3s ease' 
+              }} 
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
     </div>
   );

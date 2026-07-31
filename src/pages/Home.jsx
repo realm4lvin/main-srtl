@@ -790,32 +790,92 @@ const renderDownloadItems = (items) => (
         </div>
       </section>
 
-{/* 🤝 MOVING CLIENT LOGO CAROUSEL LOOP */}
-      <section style={{ padding: '4rem 0', textAlign: 'center', backgroundColor: 'var(--color-light-gray)', overflow: 'hidden' }}>
-        <div style={{ fontSize: '0.85rem', fontWeight: '800', color: '#475467', letterSpacing: '1px', marginBottom: '2.5rem', textTransform: 'uppercase' }}>
-          ACCREDITATIONS, AFFILIATIONS AND ASSOCIATIONS
-        </div>
-        <div className="marquee-container">
-          <div className="marquee-content">
-            {clientLogos.map((item, idx) => (
-              <div key={`loop1-${idx}`} className="marquee-item" style={{ margin: '0 2rem' }}>
-                <div style={{ height: '90px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={item.logo} alt={item.name} style={{ maxHeight: '80px', maxWidth: '180px', width: 'auto', objectFit: 'contain', transform: item.scale, transformOrigin: 'center' }} />
-                </div>
-              </div>
-            ))}
+{/* 🤝 7. MOVING CLIENT LOGO CAROUSEL LOOP */}
+<section style={{ padding: '2.5rem 0', textAlign: 'center', backgroundColor: 'var(--color-light-gray)', overflow: 'hidden' }}>
+  <div style={{ fontSize: '0.85rem', fontWeight: '800', color: '#475467', letterSpacing: '1px', marginBottom: '2rem', textTransform: 'uppercase' }}>
+    ACCREDITATIONS, AFFILIATIONS AND ASSOCIATIONS
+  </div>
+  
+  <div className="marquee-container" style={{ padding: '12px 0' }}>
+    <div className="marquee-content">
+      {clientLogos.map((item, idx) => (
+        <div 
+          key={`loop1-${idx}`} 
+          className="marquee-item" 
+          style={{ 
+            margin: '0 2.5rem', 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+            cursor: 'pointer' 
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-5px) scale(1.08)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+          }}
+        >
+          <div style={{ height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img 
+              src={item.logo} 
+              alt={item.name} 
+              style={{ 
+                maxHeight: '75px', 
+                maxWidth: '200px', 
+                width: 'auto', 
+                objectFit: 'contain', 
+                transform: item.scale, 
+                transformOrigin: 'center', 
+                transition: 'transform 0.3s ease' 
+              }} 
+            />
           </div>
-          <div className="marquee-content" aria-hidden="true">
-            {clientLogos.map((item, idx) => (
-              <div key={`loop2-${idx}`} className="marquee-item" style={{ margin: '0 2rem' }}>
-                <div style={{ height: '90px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={item.logo} alt={item.name} style={{ maxHeight: '80px', maxWidth: '180px', width: 'auto', objectFit: 'contain', transform: item.scale, transformOrigin: 'center' }} />
-                </div>
-              </div>
-            ))}
+        </div>
+      ))}
+    </div>
+
+    <div className="marquee-content" aria-hidden="true">
+      {clientLogos.map((item, idx) => (
+        <div 
+          key={`loop2-${idx}`} 
+          className="marquee-item" 
+          style={{ 
+            margin: '0 2.5rem', 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+            cursor: 'pointer' 
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-5px) scale(1.08)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+          }}
+        >
+          <div style={{ height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img 
+              src={item.logo} 
+              alt={item.name} 
+              style={{ 
+                maxHeight: '75px', 
+                maxWidth: '200px', 
+                width: 'auto', 
+                objectFit: 'contain', 
+                transform: item.scale, 
+                transformOrigin: 'center', 
+                transition: 'transform 0.3s ease' 
+              }} 
+            />
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
     </div>
   );
