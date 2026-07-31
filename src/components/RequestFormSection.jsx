@@ -388,18 +388,15 @@ const RequestFormSection = ({ hasMessage = false }) => {
                     height: '42px', 
                     fontSize: '0.9rem', 
                     borderRadius: '6px', 
-                    borderColor: '#d0d5dd',
-                    paddingLeft: '80px'
+                    borderColor: '#d0d5dd'
                   }}
                   buttonStyle={{ 
                     borderRadius: '6px 0 0 6px', 
                     borderColor: '#d0d5dd',
-                    width: '70px',
-                    paddingRight: '6px'
+                    backgroundColor: '#f9fafb'
                   }}
-                  prefix="+"
-                  enableAreaCodes={true}
-                  countryCodeEditable={false}
+                  dropdownStyle={{ width: '280px' }}
+                  enableSearch={true}
                   placeholder="801 234 5678"
                 />
               </div>
@@ -484,18 +481,15 @@ const RequestFormSection = ({ hasMessage = false }) => {
                     height: '42px', 
                     fontSize: '0.9rem', 
                     borderRadius: '6px', 
-                    borderColor: '#d0d5dd',
-                    paddingLeft: '80px'
+                    borderColor: '#d0d5dd'
                   }}
                   buttonStyle={{ 
                     borderRadius: '6px 0 0 6px', 
                     borderColor: '#d0d5dd',
-                    width: '70px',
-                    paddingRight: '6px'
+                    backgroundColor: '#f9fafb'
                   }}
-                  prefix="+"
-                  enableAreaCodes={true}
-                  countryCodeEditable={false}
+                  dropdownStyle={{ width: '280px' }}
+                  enableSearch={true}
                   placeholder="801 234 5678"
                 />
               </div>
