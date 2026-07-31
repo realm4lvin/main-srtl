@@ -104,7 +104,7 @@ const Footer = () => {
               </h4>
               <p style={{ color: '#d0d5dd', fontSize: '0.85rem', lineHeight: '1.5', margin: 0 }}>
                 <a 
-                  href="https://www.google.com/maps/search/?api=1&query=6C+Forces+Avenue+Old+GRA+Port+Harcourt+Nigeria" 
+                  href="https://www.google.com/maps/place/Safeguard+Safety+and+Management+Center/@4.7769727,7.0112432,17z/data=!4m15!1m8!3m7!1s0x1069cc00dbf268f5:0xc2caff7c5c5d395d!2s6+Forces+Ave,+Old+GRA,+Port+Harcourt+500101,+Rivers!3b1!8m2!3d4.7769999!4d7.0112477!16s%2Fg%2F11mq2xd_6_!3m5!1s0x1069cc00d8e776df:0x709bbf101a469714!8m2!3d4.77705!4d7.011387!16s%2Fg%2F11b7fzcmyk?entry=ttu&g_ep=EgoyMDI2MDcyNy4wIKXMDSoASAFQAw%3D%3D" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   style={{ color: '#ffffff', textDecoration: 'none' }}

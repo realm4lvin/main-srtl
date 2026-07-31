@@ -382,8 +382,24 @@ const RequestFormSection = ({ hasMessage = false }) => {
                   country={'ng'}
                   value={courseForm.phone}
                   onChange={(phone) => setCourseForm({ ...courseForm, phone })}
-                  inputStyle={{ width: '100%', height: '42px', fontSize: '0.9rem', borderRadius: '6px', borderColor: '#d0d5dd' }}
-                  buttonStyle={{ borderRadius: '6px 0 0 6px', borderColor: '#d0d5dd' }}
+                  containerStyle={{ width: '100%' }}
+                  inputStyle={{ 
+                    width: '100%', 
+                    height: '42px', 
+                    fontSize: '0.9rem', 
+                    borderRadius: '6px', 
+                    borderColor: '#d0d5dd',
+                    paddingLeft: '80px'
+                  }}
+                  buttonStyle={{ 
+                    borderRadius: '6px 0 0 6px', 
+                    borderColor: '#d0d5dd',
+                    width: '70px',
+                    paddingRight: '6px'
+                  }}
+                  prefix="+"
+                  enableAreaCodes={true}
+                  countryCodeEditable={false}
                   placeholder="801 234 5678"
                 />
               </div>
@@ -462,8 +478,24 @@ const RequestFormSection = ({ hasMessage = false }) => {
                   country={'ng'}
                   value={quoteForm.phone}
                   onChange={(phone) => setQuoteForm({ ...quoteForm, phone })}
-                  inputStyle={{ width: '100%', height: '42px', fontSize: '0.9rem', borderRadius: '6px', borderColor: '#d0d5dd' }}
-                  buttonStyle={{ borderRadius: '6px 0 0 6px', borderColor: '#d0d5dd' }}
+                  containerStyle={{ width: '100%' }}
+                  inputStyle={{ 
+                    width: '100%', 
+                    height: '42px', 
+                    fontSize: '0.9rem', 
+                    borderRadius: '6px', 
+                    borderColor: '#d0d5dd',
+                    paddingLeft: '80px'
+                  }}
+                  buttonStyle={{ 
+                    borderRadius: '6px 0 0 6px', 
+                    borderColor: '#d0d5dd',
+                    width: '70px',
+                    paddingRight: '6px'
+                  }}
+                  prefix="+"
+                  enableAreaCodes={true}
+                  countryCodeEditable={false}
                   placeholder="801 234 5678"
                 />
               </div>
