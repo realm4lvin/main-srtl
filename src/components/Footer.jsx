@@ -30,14 +30,14 @@ const Footer = () => {
 
             <div style={{ marginBottom: '1.5rem' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: '800', color: '#98a2b3', textTransform: 'uppercase', marginBottom: '0.4rem' }}>
-    WHATSAPP
-  </div>
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.88rem', fontWeight: '600' }}>
-    <a href="https://wa.me/447878121965" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +44 787 812 1965</a>
-    <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +234 703 016 2747</a>
-    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +44 731 125 4738</a>
-    <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +234 803 309 7942</a>
-  </div>
+                WHATSAPP
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.88rem', fontWeight: '600' }}>
+                <a href="https://wa.me/447878121965" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +44 787 812 1965</a>
+                <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +234 703 016 2747</a>
+                <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +44 731 125 4738</a>
+                <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#ffffff', textDecoration: 'none' }}>📞 +234 803 309 7942</a>
+              </div>
             </div>
 
             {/* Social Links (Matching TopBar Icons) */}
@@ -54,6 +54,10 @@ const Footer = () => {
                 </a>
                 <a href="https://www.linkedin.com/company/safeguard-safety-and-management-center/" target="_blank" rel="noreferrer" aria-label="LinkedIn" style={{ color: '#ffffff', transition: 'color 0.2s ease' }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                {/* TikTok Icon */}
+                <a href="https://www.tiktok.com/@safeguard.safety?_r=1&_t=ZN-98NSlCMZeSc" target="_blank" rel="noreferrer" aria-label="TikTok" style={{ color: '#ffffff', transition: 'color 0.2s ease' }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
                 </a>
               </div>
             </div>
