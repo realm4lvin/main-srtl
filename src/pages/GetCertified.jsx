@@ -32,25 +32,25 @@ const GetCertified = () => {
   ];
 
   // Registration Documents List Items
-  const registrationDocs = [
+const registrationDocs = [
     { 
       label: "Download International Training Calendar", 
-      file: "/docs/INTERNATIONAL TRAINING CALENDAR.pdf",
+      file: "/documents/calendar.pdf",
       downloadName: "INTERNATIONAL TRAINING CALENDAR.pdf"
     },
     { 
       label: "Download International Course Registration Form", 
-      file: "/docs/INTERNATIONAL COURSE REGISTRATION FORM.docx",
+      file: "/documents/registration-form.docx",
       downloadName: "INTERNATIONAL COURSE REGISTRATION FORM.docx"
     },
     { 
       label: "Download International Course Selection Guide", 
-      file: "/docs/INTERNATIONAL COURSE SELECTION GUIDE.pdf",
+      file: "/documents/course-guide.pdf",
       downloadName: "INTERNATIONAL COURSE SELECTION GUIDE.pdf"
     },
     { 
       label: "Download International Terms and Conditions", 
-      file: "/docs/INTERNATIONAL TERMS AND CONDITIONS.docx",
+      file: "/documents/terms.docx",
       downloadName: "INTERNATIONAL TERMS AND CONDITIONS.docx"
     }
   ];
@@ -328,83 +328,30 @@ const GetCertified = () => {
         </div>
       </section>
 
-      {/* 📄 3. COURSE REGISTRATION CONFIRMATION */}
-      <section style={{ backgroundColor: '#f9fafb', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
+{/* 3. COURSE REGISTRATION CONFIRMATION */}
+      <section style={{ backgroundColor: '#ffffff', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          
-          <h2 style={{
-            fontSize: '1.8rem',
-            color: '#2b704a',
-            fontWeight: '800',
-            marginBottom: '0.5rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-            textAlign: 'center'
-          }}>
+          <h2 style={{ fontSize: '1.8rem', color: '#2b704a', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px', textAlign: 'center' }}>
             Course Registration Confirmation
           </h2>
           <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', margin: '0 auto 3.5rem auto' }}></div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '2.5rem',
-            alignItems: 'stretch'
-          }}>
-            <div style={{
-              backgroundColor: '#ffffff',
-              border: '1px solid #eaecf0',
-              borderTop: '4px solid #2b704a',
-              borderRadius: '8px',
-              padding: '2.5rem',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)',
-              display: 'flex',
-              flexDirection: 'column',
-              justify: 'space-between'
-            }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', alignItems: 'stretch' }}>
+            <div style={{ backgroundColor: '#ffffff', border: '1px solid #eaecf0', borderTop: '4px solid #2b704a', borderRadius: '8px', padding: '2.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
-                  Submit Registration Documents
-                </h3>
+                <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Submit Registration Documents</h3>
                 {renderListItems(submissionDocs)}
               </div>
 
-              <div style={{
-                backgroundColor: '#f9fafb',
-                borderLeft: '4px solid #2b704a',
-                padding: '1rem 1.2rem',
-                borderRadius: '0 6px 6px 0',
-                marginTop: '1rem'
-              }}>
-                <span style={{ fontSize: '0.9rem', color: '#475467', fontWeight: '600' }}>
-                  Shall be returned to:{' '}
-                </span>
-                <a href="mailto:admin@safeguardsafety.net" style={{
-                  color: '#2b704a',
-                  fontWeight: '700',
-                  fontSize: '0.95rem',
-                  textDecoration: 'none'
-                }}>
-                  admin@safeguardsafety.net
-                </a>
+              <div style={{ backgroundColor: '#f9fafb', borderLeft: '4px solid #2b704a', padding: '1rem 1.2rem', borderRadius: '0 6px 6px 0', marginTop: '1rem' }}>
+                <span style={{ fontSize: '0.9rem', color: '#475467', fontWeight: '600' }}>Shall be returned to:{' '}</span>
+                <a href="mailto:admin@safeguardsafety.net" style={{ color: '#2b704a', fontWeight: '700', fontSize: '0.95rem', textDecoration: 'none' }}>admin@safeguardsafety.net</a>
               </div>
             </div>
 
-            <div style={{
-              backgroundColor: '#ffffff',
-              border: '1px solid #eaecf0',
-              borderTop: '4px solid #2b704a',
-              borderRadius: '8px',
-              padding: '2.5rem',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)',
-              display: 'flex',
-              flexDirection: 'column',
-              justify: 'space-between'
-            }}>
+            <div style={{ backgroundColor: '#ffffff', border: '1px solid #eaecf0', borderTop: '4px solid #2b704a', borderRadius: '8px', padding: '2.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
-                  For Registration Enquiries
-                </h3>
+                <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>For Registration Enquiries</h3>
                 
                 <div style={{ marginBottom: '1.5rem' }}>
                   <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#344054', marginBottom: '0.6rem' }}>
@@ -412,31 +359,16 @@ const GetCertified = () => {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.92rem' }}>
                     <a href="https://wa.me/447878121965" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 787 812 1965</a>
-    <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 703 016 2747</a>
-    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 731 125 4738</a>
-    <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 803 309 7942</a>
+                    <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 703 016 2747</a>
+                    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 731 125 4738</a>
+                    <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 803 309 7942</a>
                   </div>
                 </div>
               </div>
 
-              <div style={{
-                backgroundColor: '#f9fafb',
-                borderLeft: '4px solid #2b704a',
-                padding: '1rem 1.2rem',
-                borderRadius: '0 6px 6px 0',
-                marginTop: '1rem'
-              }}>
-                <span style={{ fontSize: '0.9rem', color: '#475467', fontWeight: '600' }}>
-                  Or Send Query to:{' '}
-                </span>
-                <a href="mailto:admin@safeguardsafety.net" style={{
-                  color: '#2b704a',
-                  fontWeight: '700',
-                  fontSize: '0.95rem',
-                  textDecoration: 'none'
-                }}>
-                  admin@safeguardsafety.net
-                </a>
+              <div style={{ backgroundColor: '#f9fafb', borderLeft: '4px solid #2b704a', padding: '1rem 1.2rem', borderRadius: '0 6px 6px 0', marginTop: '1rem' }}>
+                <span style={{ fontSize: '0.9rem', color: '#475467', fontWeight: '600' }}>Or Send Query to:{' '}</span>
+                <a href="mailto:admin@safeguardsafety.net" style={{ color: '#2b704a', fontWeight: '700', fontSize: '0.95rem', textDecoration: 'none' }}>admin@safeguardsafety.net</a>
               </div>
             </div>
           </div>

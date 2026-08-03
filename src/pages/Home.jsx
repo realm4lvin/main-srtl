@@ -123,29 +123,28 @@ const Home = () => {
   ];
 
 // Registration Documents List Items
-  const registrationDocs = [
+const registrationDocs = [
     { 
       label: "Download International Training Calendar", 
-      file: "/docs/INTERNATIONAL TRAINING CALENDAR.pdf",
+      file: "/documents/calendar.pdf",
       downloadName: "INTERNATIONAL TRAINING CALENDAR.pdf"
     },
     { 
       label: "Download International Course Registration Form", 
-      file: "/docs/INTERNATIONAL COURSE REGISTRATION FORM.docx",
+      file: "/documents/registration-form.docx",
       downloadName: "INTERNATIONAL COURSE REGISTRATION FORM.docx"
     },
     { 
       label: "Download International Course Selection Guide", 
-      file: "/docs/INTERNATIONAL COURSE SELECTION GUIDE.pdf",
+      file: "/documents/course-guide.pdf",
       downloadName: "INTERNATIONAL COURSE SELECTION GUIDE.pdf"
     },
     { 
       label: "Download International Terms and Conditions", 
-      file: "/docs/INTERNATIONAL TERMS AND CONDITIONS.docx",
+      file: "/documents/terms.docx",
       downloadName: "INTERNATIONAL TERMS AND CONDITIONS.docx"
     }
   ];
-
   const submissionDocs = [
     "Proof or Evidence of Payment",
     "Completed Registration Form",
@@ -694,7 +693,7 @@ const renderDownloadItems = (items) => (
         </div>
       </section>
 
-      {/* COURSE REGISTRATION CONFIRMATION */}
+{/* COURSE REGISTRATION CONFIRMATION */}
       <section style={{ backgroundColor: '#ffffff', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 style={{ fontSize: '1.8rem', color: '#2b704a', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px', textAlign: 'center' }}>
@@ -721,14 +720,14 @@ const renderDownloadItems = (items) => (
                 
                 <div style={{ marginBottom: '1.5rem' }}>
                   <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#344054', marginBottom: '0.6rem' }}>
-    WhatsApp:
-  </div>
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.92rem' }}>
-    <a href="https://wa.me/447878121965" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 787 812 1965</a>
-    <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 703 016 2747</a>
-    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 731 125 4738</a>
-    <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 803 309 7942</a>
-  </div>
+                    WhatsApp:
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.92rem' }}>
+                    <a href="https://wa.me/447878121965" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 787 812 1965</a>
+                    <a href="https://wa.me/2347030162747" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 703 016 2747</a>
+                    <a href="https://wa.me/447311254738" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +44 731 125 4738</a>
+                    <a href="https://wa.me/2348033097942" target="_blank" rel="noreferrer" style={{ color: '#2b704a', textDecoration: 'none', fontWeight: '600' }}>📞 +234 803 309 7942</a>
+                  </div>
                 </div>
               </div>
 
