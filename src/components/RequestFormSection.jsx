@@ -428,36 +428,112 @@ const RequestFormSection = ({ hasMessage = false }) => {
     message: ''
   });
 
-  const handleCourseSubmit = (e) => {
+  const [isSubmittingCourse, setIsSubmittingCourse] = useState(false);
+  const [isSubmittingQuote, setIsSubmittingQuote] = useState(false);
+
+  const [courseSubmitStatus, setCourseSubmitStatus] = useState({ success: false, message: '' });
+  const [quoteSubmitStatus, setQuoteSubmitStatus] = useState({ success: false, message: '' });
+
+  const handleCourseSubmit = async (e) => {
     e.preventDefault();
-    let body = `Name of Contact Person: ${courseForm.name}\n` +
-      `Official email: ${courseForm.email}\n` +
-      `WhatsApp: ${courseForm.phoneCode.value} ${courseForm.phone}\n` +
-      `Name of Organisation: ${courseForm.organisation}\n` +
-      `Course or Service of Choice: ${courseForm.choice}\n` +
-      `Country of Location: ${courseForm.country}`;
+    setIsSubmittingCourse(true);
+    setCourseSubmitStatus({ success: false, message: '' });
 
-    if (hasMessage && courseForm.message) {
-      body += `\n\nYour Message:\n${courseForm.message}`;
+    const formData = {
+      access_key: "915bd230-6d9b-42a3-a6b6-395cead8f19a",
+      subject: "Individual or Personal Request",
+      name: courseForm.name,
+      email: courseForm.email,
+      phone: `${courseForm.phoneCode.value} ${courseForm.phone}`,
+      organisation: courseForm.organisation,
+      course_choice: courseForm.choice,
+      country: courseForm.country,
+      message: courseForm.message || "N/A"
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setCourseSubmitStatus({ success: true, message: 'Form submitted successfully!' });
+        setCourseForm({
+          name: '',
+          email: '',
+          phoneCode: phoneDialCodes[0],
+          phone: '',
+          organisation: '',
+          choice: '',
+          country: '',
+          message: ''
+        });
+      } else {
+        setCourseSubmitStatus({ success: false, message: 'Submission failed. Please try again.' });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setCourseSubmitStatus({ success: false, message: 'Error submitting request. Please check your network connection.' });
+    } finally {
+      setIsSubmittingCourse(false);
     }
-
-    window.location.href = `mailto:register@safeguardsafety.net?subject=${encodeURIComponent('Individual or Personal Request')}&body=${encodeURIComponent(body)}`;
   };
 
-  const handleQuoteSubmit = (e) => {
+  const handleQuoteSubmit = async (e) => {
     e.preventDefault();
-    let body = `Name of Contact Person: ${quoteForm.name}\n` +
-      `Official email: ${quoteForm.email}\n` +
-      `WhatsApp: ${quoteForm.phoneCode.value} ${quoteForm.phone}\n` +
-      `Name of Organisation: ${quoteForm.organisation}\n` +
-      `Course or Service of Choice: ${quoteForm.service}\n` +
-      `Country of Location: ${quoteForm.country}`;
+    setIsSubmittingQuote(true);
+    setQuoteSubmitStatus({ success: false, message: '' });
 
-    if (hasMessage && quoteForm.message) {
-      body += `\n\nYour Message:\n${quoteForm.message}`;
+    const formData = {
+      access_key: "915bd230-6d9b-42a3-a6b6-395cead8f19a",
+      subject: "Company or Corporate Request",
+      name: quoteForm.name,
+      email: quoteForm.email,
+      phone: `${quoteForm.phoneCode.value} ${quoteForm.phone}`,
+      organisation: quoteForm.organisation,
+      course_choice: quoteForm.service,
+      country: quoteForm.country,
+      message: quoteForm.message || "N/A"
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setQuoteSubmitStatus({ success: true, message: 'Form submitted successfully!' });
+        setQuoteForm({
+          name: '',
+          email: '',
+          phoneCode: phoneDialCodes[0],
+          phone: '',
+          organisation: '',
+          service: '',
+          country: '',
+          message: ''
+        });
+      } else {
+        setQuoteSubmitStatus({ success: false, message: 'Submission failed. Please try again.' });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setQuoteSubmitStatus({ success: false, message: 'Error submitting request. Please check your network connection.' });
+    } finally {
+      setIsSubmittingQuote(false);
     }
-
-    window.location.href = `mailto:register@safeguardsafety.net?subject=${encodeURIComponent('Company or Corporate Request')}&body=${encodeURIComponent(body)}`;
   };
 
   const cardHoverStyle = {
@@ -567,13 +643,13 @@ const RequestFormSection = ({ hasMessage = false }) => {
                       isSearchable={true}
                     />
                   </div>
-<input
-  type="tel"
-  required
-  value={courseForm.phone}
-  onChange={(e) => setCourseForm({ ...courseForm, phone: e.target.value })}
-  style={{ ...inputStyle, flex: 1 }}
-/>
+                  <input
+                    type="tel"
+                    required
+                    value={courseForm.phone}
+                    onChange={(e) => setCourseForm({ ...courseForm, phone: e.target.value })}
+                    style={{ ...inputStyle, flex: 1 }}
+                  />
                 </div>
               </div>
 
@@ -611,17 +687,44 @@ const RequestFormSection = ({ hasMessage = false }) => {
                 </div>
               )}
 
-              <button type="submit" style={{ backgroundColor: '#2b704a', color: '#ffffff', fontWeight: '800', padding: '0.8rem', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.5rem', transition: 'all 0.25s ease' }} onMouseEnter={(e) => { e.target.style.backgroundColor = '#1e5235'; e.target.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.target.style.backgroundColor = '#2b704a'; e.target.style.transform = 'translateY(0)'; }}>
-                Submit Request
+              <button type="submit" disabled={isSubmittingCourse} style={{ backgroundColor: '#2b704a', color: '#ffffff', fontWeight: '800', padding: '0.8rem', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.5rem', transition: 'all 0.25s ease', opacity: isSubmittingCourse ? 0.7 : 1 }} onMouseEnter={(e) => { e.target.style.backgroundColor = '#1e5235'; e.target.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.target.style.backgroundColor = '#2b704a'; e.target.style.transform = 'translateY(0)'; }}>
+                {isSubmittingCourse ? 'Sending...' : 'Submit Request'}
               </button>
+
+              {courseSubmitStatus.message && (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  backgroundColor: courseSubmitStatus.success ? '#ecfdf5' : '#fef2f2',
+                  color: courseSubmitStatus.success ? '#065f46' : '#991b1b',
+                  border: `1px solid ${courseSubmitStatus.success ? '#a7f3d0' : '#fecaca'}`,
+                  padding: '0.75rem 1rem',
+                  borderRadius: '6px',
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  marginTop: '0.5rem'
+                }}>
+                  {courseSubmitStatus.success ? (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                  ) : (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="15" y1="9" x2="9" y2="15"></line>
+                      <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                  )}
+                  <span>{courseSubmitStatus.message}</span>
+                </div>
+              )}
             </form>
           </div>
 
           <div style={{ backgroundColor: '#f9fafb', borderLeft: '4px solid #2b704a', padding: '0.8rem 1.2rem', borderRadius: '0 6px 6px 0', marginTop: '1.5rem', fontSize: '0.85rem' }}>
-            <span style={{ color: '#475467', fontWeight: '600' }}>Your request will be sent to:{' '}</span>
-            <a href="mailto:register@safeguardsafety.net?subject=Individual%20or%20Personal%20Request" style={{ color: '#2b704a', fontWeight: '700', textDecoration: 'none' }}>
-              register@safeguardsafety.net
-            </a>
+            <span style={{ color: '#475467', fontWeight: '600' }}>Your request will be sent directly to our team.</span>
           </div>
         </div>
 
@@ -659,12 +762,12 @@ const RequestFormSection = ({ hasMessage = false }) => {
                     />
                   </div>
                   <input
-  type="tel"
-  required
-  value={courseForm.phone}
-  onChange={(e) => setCourseForm({ ...courseForm, phone: e.target.value })}
-  style={{ ...inputStyle, flex: 1 }}
-/>
+                    type="tel"
+                    required
+                    value={quoteForm.phone}
+                    onChange={(e) => setQuoteForm({ ...quoteForm, phone: e.target.value })}
+                    style={{ ...inputStyle, flex: 1 }}
+                  />
                 </div>
               </div>
 
@@ -702,17 +805,44 @@ const RequestFormSection = ({ hasMessage = false }) => {
                 </div>
               )}
 
-              <button type="submit" style={{ backgroundColor: '#2b704a', color: '#ffffff', fontWeight: '800', padding: '0.8rem', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.5rem', transition: 'all 0.25s ease' }} onMouseEnter={(e) => { e.target.style.backgroundColor = '#1e5235'; e.target.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.target.style.backgroundColor = '#2b704a'; e.target.style.transform = 'translateY(0)'; }}>
-                Submit Request
+              <button type="submit" disabled={isSubmittingQuote} style={{ backgroundColor: '#2b704a', color: '#ffffff', fontWeight: '800', padding: '0.8rem', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '0.5rem', transition: 'all 0.25s ease', opacity: isSubmittingQuote ? 0.7 : 1 }} onMouseEnter={(e) => { e.target.style.backgroundColor = '#1e5235'; e.target.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.target.style.backgroundColor = '#2b704a'; e.target.style.transform = 'translateY(0)'; }}>
+                {isSubmittingQuote ? 'Sending...' : 'Submit Request'}
               </button>
+
+              {quoteSubmitStatus.message && (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  backgroundColor: quoteSubmitStatus.success ? '#ecfdf5' : '#fef2f2',
+                  color: quoteSubmitStatus.success ? '#065f46' : '#991b1b',
+                  border: `1px solid ${quoteSubmitStatus.success ? '#a7f3d0' : '#fecaca'}`,
+                  padding: '0.75rem 1rem',
+                  borderRadius: '6px',
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  marginTop: '0.5rem'
+                }}>
+                  {quoteSubmitStatus.success ? (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                  ) : (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="15" y1="9" x2="9" y2="15"></line>
+                      <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                  )}
+                  <span>{quoteSubmitStatus.message}</span>
+                </div>
+              )}
             </form>
           </div>
 
           <div style={{ backgroundColor: '#f9fafb', borderLeft: '4px solid #2b704a', padding: '0.8rem 1.2rem', borderRadius: '0 6px 6px 0', marginTop: '1.5rem', fontSize: '0.85rem' }}>
-            <span style={{ color: '#475467', fontWeight: '600' }}>Your request will be sent to:{' '}</span>
-            <a href="mailto:register@safeguardsafety.net?subject=Company%20or%20Corporate%20Request" style={{ color: '#2b704a', fontWeight: '700', textDecoration: 'none' }}>
-              register@safeguardsafety.net
-            </a>
+            <span style={{ color: '#475467', fontWeight: '600' }}>Your request will be sent directly to our team.</span>
           </div>
         </div>
 
