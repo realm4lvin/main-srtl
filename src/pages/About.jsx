@@ -51,7 +51,7 @@ const About = () => {
     { logo: itfLogo, name: "ITF", scale: 'scale(1.15)' },
     { logo: nesLogo, name: "NES", scale: 'scale(1.15)' },
     { logo: fpanLogo, name: "FPAN", scale: 'scale(1.25)' },
-    { logo: neboshBadge, name: "NEBOSH", scale: 'scale(1.65)' }, // 👈 Increased scale here
+    { logo: neboshBadge, name: "NEBOSH", scale: 'scale(1.65)' },
     { logo: ioshBadge, name: "IOSH", scale: 'scale(1.2)' },
     { logo: cqiBadge, name: "CQI-IRCA", scale: 'scale(1.85)' }
   ];
@@ -59,16 +59,16 @@ const About = () => {
 // 🏢 Verified Working Logo Grid Clients (Mantrac and MTN removed)
   const corporateClients = [
     { name: "AIICO Insurance", logo: getLogo("aiico-insurance") },
-    { name: "Air France", logo: getLogo("air-france", "air--france"), scale: "scale(1.45)" }, // 🔍 Scaled up
+    { name: "Air France", logo: getLogo("air-france", "air--france"), scale: "scale(1.45)" },
     { name: "Alcon", logo: getLogo("alcon") },
-    { name: "APM Terminals", logo: getLogo("apm-terminals"), scale: "scale(1.45)" }, // 🔍 Scaled up
-    { name: "Arkleen Oil", logo: getLogo("arkleen-oil"), scale: "scale(1.35)" }, // 🔍 Scaled up
+    { name: "APM Terminals", logo: getLogo("apm-terminals"), scale: "scale(1.45)" },
+    { name: "Arkleen Oil", logo: getLogo("arkleen-oil"), scale: "scale(1.35)" },
     { name: "Aveon Offshore", logo: getLogo("aveon-offshore") },
     { name: "Axxela", logo: getLogo("axxela") },
     { name: "BOC Gases", logo: getLogo("boc-gases") },
     { name: "Ciscon", logo: getLogo("ciscon") },
     { name: "Conoil", logo: getLogo("conoil") },
-    { name: "Dangote Group", logo: getLogo("dangote"), scale: "scale(1.35)" }, // 🔍 Scaled up
+    { name: "Dangote Group", logo: getLogo("dangote"), scale: "scale(1.35)" },
     { name: "Delta Environmental", logo: getLogo("delta-environmental") },
     { name: "DHL", logo: getLogo("dhl") },
     { name: "Drillog", logo: getLogo("drillog") },
@@ -233,25 +233,26 @@ const About = () => {
     "Security Equipment Supply & Services"
   ];
 
-const registrationDocs = [
+  // UPDATED PATHS TO MATCH /public/docs/
+  const registrationDocs = [
     { 
       label: "Download International Training Calendar", 
-      file: "/documents/calendar.pdf",
+      file: "/docs/international-training-calendar.pdf",
       downloadName: "INTERNATIONAL TRAINING CALENDAR.pdf"
     },
     { 
       label: "Download International Course Registration Form", 
-      file: "/documents/registration-form.docx",
+      file: "/docs/international-course-registration-form.docx",
       downloadName: "INTERNATIONAL COURSE REGISTRATION FORM.docx"
     },
     { 
       label: "Download International Course Selection Guide", 
-      file: "/documents/course-guide.pdf",
+      file: "/docs/international-course-selection-guide.pdf",
       downloadName: "INTERNATIONAL COURSE SELECTION GUIDE.pdf"
     },
     { 
       label: "Download International Terms and Conditions", 
-      file: "/documents/terms.docx",
+      file: "/docs/international-terms-and-conditions.docx",
       downloadName: "INTERNATIONAL TERMS AND CONDITIONS.docx"
     }
   ];
@@ -318,67 +319,67 @@ const registrationDocs = [
   );
 
   const renderDownloadItems = (items) => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', margin: '0 0 1.5rem 0' }}>
-    {items.map((item, idx) => {
-      const isDocx = item.file.endsWith('.docx');
-      return (
-        <a
-          key={idx}
-          href={item.file}
-          download={item.downloadName || true} /* 👈 Forces the exact downloaded file name */
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justify: 'space-between',
-            padding: '0.85rem 1.1rem',
-            backgroundColor: '#ffffff',
-            border: '1.5px solid #eaecf0',
-            borderLeft: '5px solid #2b704a',
-            borderRadius: '8px',
-            color: '#101828',
-            fontWeight: '800',
-            fontSize: '0.88rem',
-            textDecoration: 'none',
-            boxShadow: '0 3px 8px rgba(0,0,0,0.04)',
-            transition: 'all 0.25s ease',
-            cursor: 'pointer'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#2b704a';
-            e.currentTarget.style.color = '#ffffff';
-            e.currentTarget.style.borderColor = '#2b704a';
-            e.currentTarget.style.transform = 'translateX(5px)';
-            e.currentTarget.style.boxShadow = '0 8px 18px rgba(43, 112, 74, 0.25)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#ffffff';
-            e.currentTarget.style.color = '#101828';
-            e.currentTarget.style.borderColor = '#eaecf0';
-            e.currentTarget.style.transform = 'translateX(0)';
-            e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.04)';
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <span style={{ fontSize: '1.1rem' }}>📥</span>
-            <span style={{ letterSpacing: '0.2px' }}>{item.label}</span>
-          </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', margin: '0 0 1.5rem 0' }}>
+      {items.map((item, idx) => {
+        const isDocx = item.file.endsWith('.docx');
+        return (
+          <a
+            key={idx}
+            href={item.file}
+            download={item.downloadName || true}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justify: 'space-between',
+              padding: '0.85rem 1.1rem',
+              backgroundColor: '#ffffff',
+              border: '1.5px solid #eaecf0',
+              borderLeft: '5px solid #2b704a',
+              borderRadius: '8px',
+              color: '#101828',
+              fontWeight: '800',
+              fontSize: '0.88rem',
+              textDecoration: 'none',
+              boxShadow: '0 3px 8px rgba(0,0,0,0.04)',
+              transition: 'all 0.25s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#2b704a';
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.borderColor = '#2b704a';
+              e.currentTarget.style.transform = 'translateX(5px)';
+              e.currentTarget.style.boxShadow = '0 8px 18px rgba(43, 112, 74, 0.25)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.color = '#101828';
+              e.currentTarget.style.borderColor = '#eaecf0';
+              e.currentTarget.style.transform = 'translateX(0)';
+              e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.04)';
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+              <span style={{ fontSize: '1.1rem' }}>📥</span>
+              <span style={{ letterSpacing: '0.2px' }}>{item.label}</span>
+            </div>
 
-          <span style={{
-            fontSize: '0.7rem',
-            fontWeight: '900',
-            padding: '0.2rem 0.55rem',
-            borderRadius: '4px',
-            backgroundColor: isDocx ? '#0078d4' : '#d92d20',
-            color: '#ffffff',
-            letterSpacing: '0.5px'
-          }}>
-            {isDocx ? 'DOCX' : 'PDF'}
-          </span>
-        </a>
-      );
-    })}
-  </div>
-);
+            <span style={{
+              fontSize: '0.7rem',
+              fontWeight: '900',
+              padding: '0.2rem 0.55rem',
+              borderRadius: '4px',
+              backgroundColor: isDocx ? '#0078d4' : '#d92d20',
+              color: '#ffffff',
+              letterSpacing: '0.5px'
+            }}>
+              {isDocx ? 'DOCX' : 'PDF'}
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  );
 
   return (
     <div style={{ backgroundColor: 'var(--color-white)', paddingBottom: '0' }}>
@@ -565,7 +566,7 @@ const registrationDocs = [
             </span>
           </div>
 
-          {/* 3. CQI-IRCA Badge (SLIGHTLY BOOSTED TO MATCH WEIGHT) */}
+          {/* 3. CQI-IRCA Badge */}
           <div 
             style={{ 
               display: 'flex', 
@@ -589,7 +590,7 @@ const registrationDocs = [
                   maxWidth: '100%', 
                   width: 'auto', 
                   objectFit: 'contain',
-                  transform: 'scale(1.60)', /* 👈 Boosted slightly from 1.45 to 1.60 */
+                  transform: 'scale(1.60)',
                   transformOrigin: 'center'
                 }} 
               />
@@ -646,7 +647,7 @@ const registrationDocs = [
                 backgroundColor: '#1b5e32',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justify: 'center'
               }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -692,7 +693,7 @@ const registrationDocs = [
                 backgroundColor: '#1b5e32',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justify: 'center'
               }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
@@ -1047,7 +1048,7 @@ const registrationDocs = [
               <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justify: 'center',
                 width: '42px',
                 height: '42px',
                 borderRadius: '50%',
@@ -1209,7 +1210,7 @@ const registrationDocs = [
             margin: '0 2.5rem', 
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justify: 'center',
             transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
             cursor: 'pointer' 
           }}
@@ -1248,7 +1249,7 @@ const registrationDocs = [
             margin: '0 2.5rem', 
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justify: 'center',
             transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
             cursor: 'pointer' 
           }}

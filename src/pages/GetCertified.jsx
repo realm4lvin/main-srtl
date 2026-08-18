@@ -31,26 +31,26 @@ const GetCertified = () => {
     { logo: cqiBadge, name: "CQI-IRCA", scale: 'scale(1.85)' }
   ];
 
-  // Registration Documents List Items
-const registrationDocs = [
+  // UPDATED PATHS TO MATCH /public/docs/
+  const registrationDocs = [
     { 
       label: "Download International Training Calendar", 
-      file: "/documents/calendar.pdf",
+      file: "/docs/international-training-calendar.pdf",
       downloadName: "INTERNATIONAL TRAINING CALENDAR.pdf"
     },
     { 
       label: "Download International Course Registration Form", 
-      file: "/documents/registration-form.docx",
+      file: "/docs/international-course-registration-form.docx",
       downloadName: "INTERNATIONAL COURSE REGISTRATION FORM.docx"
     },
     { 
       label: "Download International Course Selection Guide", 
-      file: "/documents/course-guide.pdf",
+      file: "/docs/international-course-selection-guide.pdf",
       downloadName: "INTERNATIONAL COURSE SELECTION GUIDE.pdf"
     },
     { 
       label: "Download International Terms and Conditions", 
-      file: "/documents/terms.docx",
+      file: "/docs/international-terms-and-conditions.docx",
       downloadName: "INTERNATIONAL TERMS AND CONDITIONS.docx"
     }
   ];
@@ -408,7 +408,7 @@ const registrationDocs = [
                 style={{
                   backgroundColor: '#ffffff',
                   border: '1px solid #eaecf0',
-                  borderTop: '4px solid #2b704a', /* Permanent top green accent on ALL cards */
+                  borderTop: '4px solid #2b704a',
                   borderRadius: '8px',
                   padding: '2.5rem 2rem',
                   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)',
@@ -421,11 +421,10 @@ const registrationDocs = [
                 onMouseEnter={handleCardMouseEnter}
                 onMouseLeave={handleCardMouseLeave}
               >
-                {/* Clean, Dead-Centered Flex Circle for Numbering */}
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
+                  justify: 'center',
                   width: '42px',
                   height: '42px',
                   borderRadius: '50%',
@@ -528,7 +527,7 @@ const registrationDocs = [
             margin: '0 2.5rem', 
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justify: 'center',
             transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
             cursor: 'pointer' 
           }}
@@ -567,7 +566,7 @@ const registrationDocs = [
             margin: '0 2.5rem', 
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justify: 'center',
             transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
             cursor: 'pointer' 
           }}

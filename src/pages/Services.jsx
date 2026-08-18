@@ -25,7 +25,7 @@ const Services = () => {
     { logo: itfLogo, name: "ITF", scale: 'scale(1.15)' },
     { logo: nesLogo, name: "NES", scale: 'scale(1.15)' },
     { logo: fpanLogo, name: "FPAN", scale: 'scale(1.25)' },
-    { logo: neboshBadge, name: "NEBOSH", scale: 'scale(1.65)' }, // 👈 Increased scale here
+    { logo: neboshBadge, name: "NEBOSH", scale: 'scale(1.65)' },
     { logo: ioshBadge, name: "IOSH", scale: 'scale(1.2)' },
     { logo: cqiBadge, name: "CQI-IRCA", scale: 'scale(1.85)' }
   ];
@@ -103,26 +103,26 @@ const Services = () => {
     "Oil Spill Contingency Plan"
   ];
 
-// Registration Documents List Items
-const registrationDocs = [
+  // UPDATED PATHS TO MATCH /public/docs/
+  const registrationDocs = [
     { 
       label: "Download International Training Calendar", 
-      file: "/documents/calendar.pdf",
+      file: "/docs/international-training-calendar.pdf",
       downloadName: "INTERNATIONAL TRAINING CALENDAR.pdf"
     },
     { 
       label: "Download International Course Registration Form", 
-      file: "/documents/registration-form.docx",
+      file: "/docs/international-course-registration-form.docx",
       downloadName: "INTERNATIONAL COURSE REGISTRATION FORM.docx"
     },
     { 
       label: "Download International Course Selection Guide", 
-      file: "/documents/course-guide.pdf",
+      file: "/docs/international-course-selection-guide.pdf",
       downloadName: "INTERNATIONAL COURSE SELECTION GUIDE.pdf"
     },
     { 
       label: "Download International Terms and Conditions", 
-      file: "/documents/terms.docx",
+      file: "/docs/international-terms-and-conditions.docx",
       downloadName: "INTERNATIONAL TERMS AND CONDITIONS.docx"
     }
   ];
@@ -181,69 +181,68 @@ const registrationDocs = [
     </ul>
   );
 
-  // Updated renderDownloadItems without the download arrow icon ⬇
-const renderDownloadItems = (items) => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', margin: '0 0 1.5rem 0' }}>
-    {items.map((item, idx) => {
-      const isDocx = item.file.endsWith('.docx');
-      return (
-        <a
-          key={idx}
-          href={item.file}
-          download={item.downloadName || true} /* 👈 Forces the exact downloaded file name */
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justify: 'space-between',
-            padding: '0.85rem 1.1rem',
-            backgroundColor: '#ffffff',
-            border: '1.5px solid #eaecf0',
-            borderLeft: '5px solid #2b704a',
-            borderRadius: '8px',
-            color: '#101828',
-            fontWeight: '800',
-            fontSize: '0.88rem',
-            textDecoration: 'none',
-            boxShadow: '0 3px 8px rgba(0,0,0,0.04)',
-            transition: 'all 0.25s ease',
-            cursor: 'pointer'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#2b704a';
-            e.currentTarget.style.color = '#ffffff';
-            e.currentTarget.style.borderColor = '#2b704a';
-            e.currentTarget.style.transform = 'translateX(5px)';
-            e.currentTarget.style.boxShadow = '0 8px 18px rgba(43, 112, 74, 0.25)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#ffffff';
-            e.currentTarget.style.color = '#101828';
-            e.currentTarget.style.borderColor = '#eaecf0';
-            e.currentTarget.style.transform = 'translateX(0)';
-            e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.04)';
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <span style={{ fontSize: '1.1rem' }}>📥</span>
-            <span style={{ letterSpacing: '0.2px' }}>{item.label}</span>
-          </div>
+  const renderDownloadItems = (items) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', margin: '0 0 1.5rem 0' }}>
+      {items.map((item, idx) => {
+        const isDocx = item.file.endsWith('.docx');
+        return (
+          <a
+            key={idx}
+            href={item.file}
+            download={item.downloadName || true}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justify: 'space-between',
+              padding: '0.85rem 1.1rem',
+              backgroundColor: '#ffffff',
+              border: '1.5px solid #eaecf0',
+              borderLeft: '5px solid #2b704a',
+              borderRadius: '8px',
+              color: '#101828',
+              fontWeight: '800',
+              fontSize: '0.88rem',
+              textDecoration: 'none',
+              boxShadow: '0 3px 8px rgba(0,0,0,0.04)',
+              transition: 'all 0.25s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#2b704a';
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.borderColor = '#2b704a';
+              e.currentTarget.style.transform = 'translateX(5px)';
+              e.currentTarget.style.boxShadow = '0 8px 18px rgba(43, 112, 74, 0.25)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.color = '#101828';
+              e.currentTarget.style.borderColor = '#eaecf0';
+              e.currentTarget.style.transform = 'translateX(0)';
+              e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.04)';
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+              <span style={{ fontSize: '1.1rem' }}>📥</span>
+              <span style={{ letterSpacing: '0.2px' }}>{item.label}</span>
+            </div>
 
-          <span style={{
-            fontSize: '0.7rem',
-            fontWeight: '900',
-            padding: '0.2rem 0.55rem',
-            borderRadius: '4px',
-            backgroundColor: isDocx ? '#0078d4' : '#d92d20',
-            color: '#ffffff',
-            letterSpacing: '0.5px'
-          }}>
-            {isDocx ? 'DOCX' : 'PDF'}
-          </span>
-        </a>
-      );
-    })}
-  </div>
-);
+            <span style={{
+              fontSize: '0.7rem',
+              fontWeight: '900',
+              padding: '0.2rem 0.55rem',
+              borderRadius: '4px',
+              backgroundColor: isDocx ? '#0078d4' : '#d92d20',
+              color: '#ffffff',
+              letterSpacing: '0.5px'
+            }}>
+              {isDocx ? 'DOCX' : 'PDF'}
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  );
   
   const renderRequestButton = () => (
     <Link 
@@ -676,7 +675,7 @@ const renderDownloadItems = (items) => (
         </div>
       </section>
 
-{/* 4. COURSE REGISTRATION CONFIRMATION */}
+      {/* COURSE REGISTRATION CONFIRMATION */}
       <section style={{ backgroundColor: '#ffffff', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 style={{ fontSize: '1.8rem', color: '#2b704a', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px', textAlign: 'center' }}>
@@ -685,6 +684,8 @@ const renderDownloadItems = (items) => (
           <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-yellow)', margin: '0 auto 3.5rem auto' }}></div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', alignItems: 'stretch' }}>
+            
+            {/* Card 1: Submit Registration Documents */}
             <div style={{ backgroundColor: '#ffffff', border: '1px solid #eaecf0', borderTop: '4px solid #2b704a', borderRadius: '8px', padding: '2.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
                 <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Submit Registration Documents</h3>
@@ -697,6 +698,7 @@ const renderDownloadItems = (items) => (
               </div>
             </div>
 
+            {/* Card 2: For Registration Enquiries */}
             <div style={{ backgroundColor: '#ffffff', border: '1px solid #eaecf0', borderTop: '4px solid #2b704a', borderRadius: '8px', padding: '2.5rem', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.02)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
                 <h3 style={{ fontSize: '1.1rem', color: '#2b704a', fontWeight: '800', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>For Registration Enquiries</h3>
@@ -719,6 +721,7 @@ const renderDownloadItems = (items) => (
                 <a href="mailto:admin@safeguardsafety.net" style={{ color: '#2b704a', fontWeight: '700', fontSize: '0.95rem', textDecoration: 'none' }}>admin@safeguardsafety.net</a>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -771,7 +774,7 @@ const renderDownloadItems = (items) => (
                 <div style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
+                  justify: 'center',
                   width: '42px',
                   height: '42px',
                   borderRadius: '50%',
@@ -796,7 +799,7 @@ const renderDownloadItems = (items) => (
       </section>
 
       {/* 📩 6. REQUEST FOR FULL DETAILS FORM SECTION */}
-<RequestFormSection hasMessage={false} />
+      <RequestFormSection hasMessage={false} />
 
       {/* REASONS TO ENROL IN OUR COURSES */}
       <section style={{ backgroundColor: '#f9fafb', padding: '5rem 2rem', borderTop: '1px solid #eaecf0' }}>
@@ -820,92 +823,92 @@ const renderDownloadItems = (items) => (
         </div>
       </section>
 
-{/* 🤝 7. MOVING CLIENT LOGO CAROUSEL LOOP */}
-<section style={{ padding: '2.5rem 0', textAlign: 'center', backgroundColor: 'var(--color-light-gray)', overflow: 'hidden' }}>
-  <div style={{ fontSize: '0.85rem', fontWeight: '800', color: '#475467', letterSpacing: '1px', marginBottom: '2rem', textTransform: 'uppercase' }}>
-    ACCREDITATIONS, AFFILIATIONS AND ASSOCIATIONS
-  </div>
-  
-  <div className="marquee-container" style={{ padding: '12px 0' }}>
-    <div className="marquee-content">
-      {clientLogos.map((item, idx) => (
-        <div 
-          key={`loop1-${idx}`} 
-          className="marquee-item" 
-          style={{ 
-            margin: '0 2.5rem', 
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
-            cursor: 'pointer' 
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-5px) scale(1.08)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0) scale(1)';
-          }}
-        >
-          <div style={{ height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img 
-              src={item.logo} 
-              alt={item.name} 
-              style={{ 
-                maxHeight: '75px', 
-                maxWidth: '200px', 
-                width: 'auto', 
-                objectFit: 'contain', 
-                transform: item.scale, 
-                transformOrigin: 'center', 
-                transition: 'transform 0.3s ease' 
-              }} 
-            />
-          </div>
+      {/* 🤝 7. MOVING CLIENT LOGO CAROUSEL LOOP */}
+      <section style={{ padding: '2.5rem 0', textAlign: 'center', backgroundColor: 'var(--color-light-gray)', overflow: 'hidden' }}>
+        <div style={{ fontSize: '0.85rem', fontWeight: '800', color: '#475467', letterSpacing: '1px', marginBottom: '2rem', textTransform: 'uppercase' }}>
+          ACCREDITATIONS, AFFILIATIONS AND ASSOCIATIONS
         </div>
-      ))}
-    </div>
+        
+        <div className="marquee-container" style={{ padding: '12px 0' }}>
+          <div className="marquee-content">
+            {clientLogos.map((item, idx) => (
+              <div 
+                key={`loop1-${idx}`} 
+                className="marquee-item" 
+                style={{ 
+                  margin: '0 2.5rem', 
+                  display: 'flex',
+                  alignItems: 'center',
+                  justify: 'center',
+                  transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+                  cursor: 'pointer' 
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px) scale(1.08)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                }}
+              >
+                <div style={{ height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img 
+                    src={item.logo} 
+                    alt={item.name} 
+                    style={{ 
+                      maxHeight: '75px', 
+                      maxWidth: '200px', 
+                      width: 'auto', 
+                      objectFit: 'contain', 
+                      transform: item.scale, 
+                      transformOrigin: 'center', 
+                      transition: 'transform 0.3s ease' 
+                    }} 
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
 
-    <div className="marquee-content" aria-hidden="true">
-      {clientLogos.map((item, idx) => (
-        <div 
-          key={`loop2-${idx}`} 
-          className="marquee-item" 
-          style={{ 
-            margin: '0 2.5rem', 
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
-            cursor: 'pointer' 
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-5px) scale(1.08)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0) scale(1)';
-          }}
-        >
-          <div style={{ height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img 
-              src={item.logo} 
-              alt={item.name} 
-              style={{ 
-                maxHeight: '75px', 
-                maxWidth: '200px', 
-                width: 'auto', 
-                objectFit: 'contain', 
-                transform: item.scale, 
-                transformOrigin: 'center', 
-                transition: 'transform 0.3s ease' 
-              }} 
-            />
+          <div className="marquee-content" aria-hidden="true">
+            {clientLogos.map((item, idx) => (
+              <div 
+                key={`loop2-${idx}`} 
+                className="marquee-item" 
+                style={{ 
+                  margin: '0 2.5rem', 
+                  display: 'flex',
+                  alignItems: 'center',
+                  justify: 'center',
+                  transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', 
+                  cursor: 'pointer' 
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px) scale(1.08)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                }}
+              >
+                <div style={{ height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img 
+                    src={item.logo} 
+                    alt={item.name} 
+                    style={{ 
+                      maxHeight: '75px', 
+                      maxWidth: '200px', 
+                      width: 'auto', 
+                      objectFit: 'contain', 
+                      transform: item.scale, 
+                      transformOrigin: 'center', 
+                      transition: 'transform 0.3s ease' 
+                    }} 
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
     </div>
   );
